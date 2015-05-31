@@ -1,0 +1,26 @@
+{
+  "name": "GagReflex",
+  "version": "1.0.0",
+  "authors": [
+    "Fortyseven <fortyseven@gmail.com>"
+  ],
+  "description": "Highlights Facebook posts coming from satire websites.",
+  "main": "content.js",
+  "keywords": [
+    "chrome",
+    "facebook",
+    "satire"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Fortyseven/GagReflex",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "zepto": "~1.1.6"
+  }
+}
