@@ -1,0 +1,32 @@
+{
+    "manifest_version": 2,
+    "name"            : "Gag Reflex",
+    "description"     : "Highlights Facebook posts coming from satire websites.",
+    "version"         : "1.0",
+    "icons"           : {
+        "16" : "app/assets/icon_16.png",
+        "48" : "app/assets/icon_48.png",
+        "128": "app/assets/icon_128.png"
+    },
+    "browser_action"  : {
+        "default_icon": "app/assets/icon.png"
+    },
+    "content_scripts" : [
+        {
+            "matches": [
+                "*://*.facebook.com/*"
+            ],
+            "js"     : [
+                "bower_components/zepto/zepto.min.js",
+                "app/content.js"
+            ],
+            "css"    : [
+                "app/assets/style.css"
+            ]
+        }
+    ],
+    "permissions"     : [
+        "activeTab",
+        "*://*.facebook.com/*"
+    ]
+}
