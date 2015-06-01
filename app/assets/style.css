@@ -1,3 +1,4 @@
 .satireItem {
-    background: #ffe0f0 !important;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(100%, #ffffee), color-stop(0%, #ffdd88));
+    box-shadow: 0 0 10px #A16F0E;
 }
