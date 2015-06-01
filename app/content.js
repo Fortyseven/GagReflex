@@ -22,25 +22,21 @@ function parsePage()
 {
     $(ARTICLE_CLASS).each(function(index)
     {
-        var el = $(this);
-        var a = $(ARTICLE_LINK_SELECTOR, el)[0] || null;
-        if (a != null)
+        var self = $(this);
+        var href = $(ARTICLE_LINK_SELECTOR, self).attr("onmouseover") || null;
+        if (href != null)
         {
-            var href = a.href;
-            if (href != null)
-            {
-                href = href.toLowerCase();
-                SATIRE_DOMAINS.forEach(
-                    function (element, index, array)
+            href = href.toLowerCase();
+            SATIRE_DOMAINS.forEach(
+                function (element, index, array)
+                {
+                    if (href.indexOf(element) >= 0)
                     {
-                        if (href.indexOf(element) >= 0)
-                        {
-                            el.addClass("satireItem");
-                            return false;
-                        }
-                        return true;
-                    });
-            }
+                        self.addClass("satireItem");
+                        return false;
+                    }
+                    return true;
+                });
         }
     });
 
