@@ -1,4 +1,4 @@
-const ARTICLE_CLASS         = "div.mbm";
+const ARTICLE_CLASS = "div.mbm";
 
 const ARTICLE_LINK_SELECTOR = "a._52c6";
 
@@ -14,31 +14,39 @@ const SATIRE_DOMAINS = [
 
 const REFRESH_DELAY = 750;
 
-$().ready(function(){
-  parsePage();
+$().ready(function ()
+{
+        parsePage();
 });
 
 function parsePage()
 {
-    $(ARTICLE_CLASS).each(function(index)
-    {
-        var self = $(this);
-        var href = $(ARTICLE_LINK_SELECTOR, self).attr("onmouseover") || null;
-        if (href != null)
+    $(ARTICLE_CLASS).each(
+        function (index)
         {
-            href = href.toLowerCase();
-            SATIRE_DOMAINS.forEach(
-                function (element, index, array)
-                {
-                    if (href.indexOf(element) >= 0)
+            var self = $(this);
+            var href = $(ARTICLE_LINK_SELECTOR, self).attr("onmouseover") || null;
+            if (href != null)
+            {
+                href = href.toLowerCase();
+                SATIRE_DOMAINS.forEach(
+                    function (element, index, array)
                     {
-                        self.addClass("satireItem");
-                        return false;
-                    }
-                    return true;
-                });
+                        if (href.indexOf(element) >= 0)
+                        {
+                            self.addClass("satireItem");
+//                        var title = $("h5 a :first", self);
+//                        if (title && !title.data("modified")) {
+//                            title.html( title.html() + "<span class=\"satire_label\">* Satire</span>");
+//                            title.data("modified", true);
+//                        }
+                            return false;
+                        }
+                        return true;
+                    });
+            }
         }
-    });
+    );
 
     setTimeout(parsePage, REFRESH_DELAY);
 }
