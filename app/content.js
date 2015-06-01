@@ -2,10 +2,14 @@ const ARTICLE_CLASS         = "div.mbm";
 
 const ARTICLE_LINK_SELECTOR = "a._52c6";
 
-const SATIRE_DOMAINS        = [
+const SATIRE_DOMAINS = [
     "onion.com", "theonion.com", "clickhole.com", "private-eye.co.uk", "newsbiscuit.com", "thespoof.com",
     "unconfirmedsources.com", "cap-news.com", "enduringvision.com", "derfmagazine.com", "newsmutiny.com",
-    "p4rgaming.com", "thedailypixel.com"
+    "p4rgaming.com", "thedailypixel.com", "dailycurrant.com", "borowitz-report", "callthecops.net",
+    "empirenews.net", "empiresports.co", "freewoodpost.com", "mediafetcher.com", "globalassociatednews.com",
+    "huzlers.com", "thelapine.ca", "lightlybraisedturnip.com", "mediamass.net", "nationalreport.net",
+    "theracketreport.com", "weeklyworldnews.com", "worldnewsdailyreport.com", "scrappleface.com",
+    "bongonews.com", "thepeoplescube.com", "utm_hp_ref=satire"
 ];
 
 const REFRESH_DELAY = 750;
