@@ -9,14 +9,14 @@ const SATIRE_DOMAINS = [
     "empirenews.net", "empiresports.co", "freewoodpost.com", "mediafetcher.com", "globalassociatednews.com",
     "huzlers.com", "thelapine.ca", "lightlybraisedturnip.com", "mediamass.net", "nationalreport.net",
     "theracketreport.com", "weeklyworldnews.com", "worldnewsdailyreport.com", "scrappleface.com",
-    "bongonews.com", "thepeoplescube.com", "utm_hp_ref=satire"
+    "bongonews.com", "thepeoplescube.com", "utm_hp_ref=satire", "newswatch28.com", "thenewsnerd.com",
+    "dailymediabuzz.com", "demyx.com"
 ];
 
 const REFRESH_DELAY = 750;
 
-$().ready(function ()
-{
-        parsePage();
+$().ready(function (){
+    parsePage();
 });
 
 function parsePage()
