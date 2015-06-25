@@ -10,7 +10,7 @@ const SATIRE_DOMAINS = [
     "huzlers.com", "thelapine.ca", "lightlybraisedturnip.com", "mediamass.net", "nationalreport.net",
     "theracketreport.com", "weeklyworldnews.com", "worldnewsdailyreport.com", "scrappleface.com",
     "bongonews.com", "thepeoplescube.com", "utm_hp_ref=satire", "newswatch28.com", "thenewsnerd.com",
-    "dailymediabuzz.com", "demyx.com"
+    "dailymediabuzz.com", "demyx.com", "americannews.com"
 ];
 
 const REFRESH_DELAY = 750;
