@@ -3,6 +3,13 @@
     box-shadow : 0 0 10px #a16f0e;
 }
 
+.questionableItem {
+    background : -webkit-gradient(linear, left top, left bottom, color-stop(100%, #ffffee), color-stop(0%, #c0c76a));
+    outline    : 2px dashed olive;
+    border     : none !important;;
+    box-shadow : 0 0 10px olive;
+}
+
 .satire_label {
     font-style     : italic;
     font-weight    : normal;
@@ -14,3 +21,4 @@
     vertical-align : baseline;
     top            : -0.5em;
 }
+
