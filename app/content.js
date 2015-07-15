@@ -40,7 +40,7 @@ const QUESTIONABLE_DOMAINS = [
     "realfarmacy.com", "redflagnews.com", "responsibletechnology.org", "secretsofthefed.com", "thecommonsenseshow.com",
     "thecontroversialfiles.net", "thelastgreatstand.com", "therightplanet.com", "theuspatriot.com", "topinfopost.com",
     "truthandaction.org", "truthbroadcastnetwork.com", "usahitman.com", "veteranstoday.com", "westernjournalism.com",
-    "whydontyoutrythis.com"
+    "whydontyoutrythis.com", "healthyandnaturallife.com"
 ];
 
 const REFRESH_DELAY = 750;
