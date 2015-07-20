@@ -1,0 +1,65 @@
+html, body {
+    min-width  : 512px;
+    min-height : 512px;
+}
+
+#Content {
+    width : 485px;
+}
+
+.menu-icon {
+    padding-left : 1rem;
+}
+
+.filter-group.mdl-card {
+    width  : 485px;
+    margin : 1rem;
+}
+
+.filter-group label,
+.filter-group textarea {
+    display : block;
+}
+
+.filter-group input[type="color"] {
+    display : inline-block;
+}
+
+.filter-group label {
+    font-weight : bold;
+    color       : #aaaaaa;
+    padding-top : 1rem;
+}
+
+.filter-group input[type="text"],
+.filter-group textarea {
+    outline       : none;
+    border        : none;
+    box-shadow    : 0px 0px 5px #cccccc;
+    padding       : 0.5rem;
+    border-radius : 3px;
+    font-size     : 1.2rem;
+}
+
+.filter-group textarea {
+    width : 440px;
+}
+
+.filter-group .group-colors input {
+    margin-left   : 1rem;
+    border        : none !important;
+    outline       : none !important;
+    padding       : 0 !important;
+    background    : transparent !important;
+    box-shadow    : 0px 1px 4px #cccccc;
+    border-radius : 3px;
+    height        : 2rem;
+    width         : 5rem;
+}
+
+.filter-group {
+    /*box-shadow : 0px 0px 5px #aaaaaa;*/
+    padding  : 0.75rem 0.75rem 1rem;
+    margin   : 0.5rem;
+    overflow : visible !important;
+}
