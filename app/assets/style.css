@@ -1,13 +1,13 @@
 .satireItem {
-    background : -webkit-gradient(linear, left top, left bottom, color-stop(100%, #ffffee), color-stop(0%, #ffdd88));
-    box-shadow : 0 0 10px #a16f0e;
+    background : -webkit-gradient(linear, left top, left bottom, color-stop(100%, #ffffee), color-stop(0%, #ffdd88)) !important;
+    box-shadow : 0 0 10px #a16f0e !important;
 }
 
 .questionableItem {
-    background : -webkit-gradient(linear, left top, left bottom, color-stop(100%, #ffffee), color-stop(0%, #c0c76a));
-    outline    : 2px dashed olive;
+    background : -webkit-gradient(linear, left top, left bottom, color-stop(100%, #ffffee), color-stop(0%, #c0c76a)) !important;
+    outline    : 2px dashed olive !important;
     border     : none !important;;
-    box-shadow : 0 0 10px olive;
+    box-shadow : 0 0 10px olive !important;
 }
 
 .satire_label {
@@ -21,4 +21,3 @@
     vertical-align : baseline;
     top            : -0.5em;
 }
-
