@@ -1,8 +1,12 @@
 "use strict";
 
 var gag;
+var gagconfig;
 
 $(document).ready( function () {
-    gag = new Gag();
-    gag.run();
+    gagconfig = new GagConfig(function(config){
+        console.log("Config loaded!", config);
+        gag = new Gag(config);
+        gag.run();
+    });
 } );

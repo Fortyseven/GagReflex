@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name":             "Gag Reflex",
-    "description":      "Highlights Facebook posts based on the website being linked to.",
+    "description":      "Highlights Facebook and Reddit content based on the website being linked to.",
     "version":          "2.0",
     "icons":            {
         "16":  "app/assets/icon_16.png",
@@ -19,12 +19,15 @@
     "content_scripts":  [
         {
             "matches": [
-                "*://*.facebook.com/*"
+                "*://*.facebook.com/*",
+                "*://*.reddit.com/*"
             ],
             "js":      [
                 "bower_components/zepto/zepto.min.js",
                 "app/gag.js",
+                "app/gag_config.js",
                 "app/content.js"
+
             ],
             "css":     [
                 "app/assets/style.css"
