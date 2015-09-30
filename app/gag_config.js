@@ -183,31 +183,33 @@ GagConfig.prototype.loadConfig = function ( on_ready_callback )
     // we have to pass a message to the 'background' page, saying, "Hey, give
     // me that shit, bro!"
 
-    chrome.runtime.sendMessage( { method: "getStatus" }, function ( response )
-    {
-        var user_conf = response.status;
+    chrome.runtime.sendMessage( { method: GagConfig.MSG_GET_USER_CONFIG },
+        function ( user_conf )
+        {
+            // So, we have to wait through the callback, and there might not even
+            // be anything. Geesh.
 
-        // So, we have to wait through the callback, and there might not even
-        // be anything. Geesh.
+            if ( user_conf ) {
+                var parsed_user_shit = JSON.parse( user_conf );
+                config.groups = self.mergeBaseAndUser( config.groups, parsed_user_shit.groups );
+            }
 
-        if ( user_conf ) {
-            var parsed_user_shit = JSON.parse( user_conf );
-            config.groups = self.mergeBaseAndUser( config.groups, parsed_user_shit.groups );
+            var arr = [];
+            for ( var i in config.groups ) {
+                config.groups[i] = self.createGroupObject( config.groups[i] );
+                arr.push( config.groups[i] );
+            }
+            console.table( arr );
+
+            // this callback is a throwback to when I was using chrome cloud
+            // storage; keeping this here in case I move back to that
+
+            //self._config = config;
+
+            var foo = on_ready_callback.bind( self );
+            foo( config ); //FIXME: m0ar el3gan7 plz
         }
-
-        var arr = [];
-        for ( var i in config.groups ) {
-            config.groups[i] = self.createGroupObject( config.groups[i] );
-            arr.push( config.groups[i] );
-        }
-        console.table( arr );
-
-        // this callback is a throwback to when I was using chrome cloud
-        // storage; keeping this here in case I move back to that
-
-        //self._config = config;
-
-        var foo = on_ready_callback.bind( self );
-        foo( config ); //FIXME: m0ar el3gan7 plz
-    } );
+    );
 };
+
+GagConfig.MSG_GET_USER_CONFIG = "getUserConfig";
