@@ -1,0 +1,196 @@
+html, body {
+  min-width  : 512px;
+  min-height : 512px;
+}
+
+#Content, input, label, .btn, textarea {
+  /*width : 485px;*/
+  font-family : "Roboto";
+}
+
+input, textarea {
+  background : white;
+}
+
+.menu-icon {
+  padding-left : 1rem;
+}
+
+/******************************/
+.group-entry {
+  padding  : 0.75rem 0.75rem 1rem;
+  margin   : 0.5rem;
+  overflow : visible !important;
+  cursor: pointer;
+
+  .name {
+    /*height: 2em;*/
+    font-weight : bold;
+  }
+
+  .count {
+    font-style : italic;
+    font-size  : 0.8rem;
+    color      : #aaaaaa;
+  }
+
+  .mdl-card {
+    width  : 485px;
+    margin : 1rem;
+  }
+
+  .btn {
+    display        : inline-block;
+    color          : darkred;
+    padding        : 0.35rem;
+    padding-top    : 0.1rem;
+    padding-bottom : 0.1rem;
+    font-size      : 0.85rem;
+    font-weight    : bold;
+    cursor         : pointer;
+    transition     : transform 50ms;
+    text-transform : uppercase;
+  }
+}
+
+//#HelpBlock {
+//  padding    : 1em;
+//  text-align : justify;
+//}
+
+/*******************************/
+#EditBox {
+  width      : 100%;
+  height     : 100%;
+  position   : fixed;
+  top        : 0;
+  bottom     : 0;
+  background : linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.65) 100%);
+
+  label {
+    font-weight : bold;
+    color       : darkgoldenrod;
+    font-size   : 0.9rem;
+    display     : block;
+    padding-top : 0.5rem;
+  }
+
+  /**************/
+  .dialog {
+    position     : relative;
+    width        : 90%;
+    background   : linear-gradient(to bottom, #ffffff 0%, #eeeeee 80%, #bbbbbb 100%);
+    z-index      : 100;
+    top          : 50%;
+    transform    : translateY(-50%);
+    margin-left  : auto;
+    margin-right : auto;
+    box-shadow   : 0px 0px 8px black;
+    padding      : 1em;
+    /*border       : 1px solid red;*/
+
+    .group-disabled {
+      color      : #aaaaaa;
+      background : #dddddd;
+    }
+
+    .top-row {
+      display : flex;
+
+      .name {
+        flex         : auto;
+        margin-right : 2rem;
+
+        input[type="text"] {
+          width : 100%;
+        }
+      }
+
+      .colors {
+        flex : 10%;
+
+        label input {
+          display : block;
+        }
+
+        label {
+          float         : left;
+          padding-right : 1rem;
+        }
+      }
+
+      div {
+        display : inline-block;
+        float   : left;
+      }
+    }
+
+    .bottom-row {
+      margin-top : 2rem;
+
+      .left { float : left; }
+      .right { float : right; }
+      .btn {
+        display        : inline-block;
+        color          : darkred;
+        padding        : 0.35rem;
+        padding-top    : 0.1rem;
+        padding-bottom : 0.1rem;
+        font-size      : 0.85rem;
+        font-weight    : bold;
+        cursor         : pointer;
+        transition     : transform 50ms;
+        text-transform : uppercase;
+      }
+      .btn:hover {
+        color      : red;
+        transition : all 250ms;
+      }
+      .btn-save:hover {
+        color : #00cc00;
+      }
+    }
+  }
+
+  .group-colors input {
+    margin-left   : 1rem;
+    border        : none !important;
+    outline       : none !important;
+    padding       : 0 !important;
+    background    : transparent !important;
+    box-shadow    : 0px 1px 4px #cccccc;
+    border-radius : 3px;
+    height        : 2rem;
+    width         : 5rem;
+  }
+
+  input[type="text"],
+  textarea {
+    border        : none;
+    box-shadow    : 0px 0px 5px #cccccc;
+    border-radius : 3px;
+    font-size     : 0.9rem;
+    padding       : 0.5rem;
+    box-sizing    : border-box;
+    width         : 100%;
+    font-family   : "Roboto Mono";
+  }
+
+  textarea {
+    font-size   : 0.85rem;
+    line-height : 1.2em;
+    height      : 150px;
+  }
+}
+
+.btn-new {
+  display  : block;
+  position : fixed;
+  right    : 5%;
+  bottom   : 5%;
+}
+
+/******************************/
+.clearfix {
+  clear : both;
+}

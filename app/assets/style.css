@@ -1,23 +1,23 @@
-.satireItem {
-    background : -webkit-gradient(linear, left top, left bottom, color-stop(100%, #ffffee), color-stop(0%, #ffdd88)) !important;
-    box-shadow : 0 0 10px #a16f0e !important;
-}
+/*.satireItem {*/
+    /*background : -webkit-gradient(linear, left top, left bottom, color-stop(100%, #ffffee), color-stop(0%, #ffdd88)) !important;*/
+    /*box-shadow : 0 0 10px #a16f0e !important;*/
+/*}*/
 
-.questionableItem {
-    background : -webkit-gradient(linear, left top, left bottom, color-stop(100%, #ffffee), color-stop(0%, #c0c76a)) !important;
-    outline    : 2px dashed olive !important;
-    border     : none !important;;
-    box-shadow : 0 0 10px olive !important;
-}
+/*.questionableItem {*/
+    /*background : -webkit-gradient(linear, left top, left bottom, color-stop(100%, #ffffee), color-stop(0%, #c0c76a)) !important;*/
+    /*outline    : 2px dashed olive !important;*/
+    /*border     : none !important;;*/
+    /*box-shadow : 0 0 10px olive !important;*/
+/*}*/
 
-.satire_label {
-    font-style     : italic;
-    font-weight    : normal;
-    color          : #3b5998;
-    opacity        : 0.8;
-    font-size      : 75%;
-    line-height    : 0;
-    position       : relative;
-    vertical-align : baseline;
-    top            : -0.5em;
-}
+/*.satire_label {*/
+    /*font-style     : italic;*/
+    /*font-weight    : normal;*/
+    /*color          : #3b5998;*/
+    /*opacity        : 0.8;*/
+    /*font-size      : 75%;*/
+    /*line-height    : 0;*/
+    /*position       : relative;*/
+    /*vertical-align : baseline;*/
+    /*top            : -0.5em;*/
+/*}*/

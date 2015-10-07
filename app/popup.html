@@ -21,9 +21,46 @@
         </nav>
     </div>
     <main class="mdl-layout__content">
-        <div id="Content">
-
+        <!--<div id="HelpBlock">Hostnames are comma-separated, and match anywhere in the URL. Built-in groups are greyed out, and cannot be edited. They can be disabled, or have their color changed, however.</div>-->
+        <div class="btn-new">
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                <i class="material-icons">add</i>
+            </button>
         </div>
+        <div id="EditBox">
+            <div class="dialog">
+                <div class="top-row">
+                    <div class="name">
+                        <label>Name</label><input type="text" class="group-name" value="{{name}}"/>
+                    </div>
+                    <div class="colors">
+                        <label>Top<input class="group-color-top" type="color" value="#FFFFFF"/></label>
+                        <label>Bottom<input class="group-color-bottom" type="color" value="#000000"/></label>
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                    <label>Domains <textarea rows=6 class="group-domains">{{csv_domains}}</textarea></label>
+                </div>
+
+                <div class="options">
+                    <label>Enabled <input class="group-enabled" type="checkbox" checked="{{opt-enabled}}"/></label>
+                </div>
+
+                <div class="bottom-row">
+                    <div class="left">
+                        <div class="btn" id="btnEditDelete">Delete Group</div>
+                    </div>
+                    <div class="right">
+                        <div class="btn" id="btnEditCancel">Cancel</div>
+                        <div class="btn btn-save" id="btnEditSave">Save Group</div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div id="Content"></div>
     </main>
 </div>
 
@@ -31,10 +68,9 @@
 <link rel="stylesheet" href="assets/material.amber-indigo.min.css"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <script src="../vendor/google/material-design-lite.js"></script>
-
 <script src="../bower_components/zepto/zepto.min.js"></script>
 <script src="../bower_components/micromustache/dist/micromustache.min.js"></script>
-<script src="gag.js"></script>
+<script src="gag_config.js"></script>
 <script src="popup.js"></script>
 </div>
 </body>

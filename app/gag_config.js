@@ -18,8 +18,7 @@ var GagConfig = function ( on_loading_complete_callback )
         "theracketreport.com", "weeklyworldnews.com", "worldnewsdailyreport.com", "scrappleface.com", "bongonews.com",
         "thepeoplescube.com", "utm_hp_ref=satire", "newswatch28.com", "thenewsnerd.com", "dailymediabuzz.com",
         "demyx.com", "americannews.com", "newslo.com", "shareonfb.com", "chronicle.su", "duffelblog.com",
-        "duhprogressive.com", "stubhillnews.com", "nbc.com.co", "starwipe.com",
-        "subgenius.com", "youtu.be", "ultraculture.org","bandcamp.com"
+        "duhprogressive.com", "stubhillnews.com", "nbc.com.co", "starwipe.com"
     ];
 
     /**
@@ -54,8 +53,7 @@ var GagConfig = function ( on_loading_complete_callback )
         "responsibletechnology.org", "secretsofthefed.com", "thecommonsenseshow.com", "thecontroversialfiles.net",
         "thelastgreatstand.com", "therightplanet.com", "theuspatriot.com", "topinfopost.com", "truthandaction.org",
         "truthbroadcastnetwork.com", "usahitman.com", "veteranstoday.com", "westernjournalism.com", "crazed.com",
-        "whydontyoutrythis.com", "healthyandnaturallife.com", "dailycaller.com", "consciouslyenlightened.com",
-        "bandcamp.com","youtube.com"
+        "whydontyoutrythis.com", "healthyandnaturallife.com", "dailycaller.com", "consciouslyenlightened.com"
     ];
 
     //this._config = {};
@@ -76,7 +74,7 @@ GagConfig.prototype.createGroupObject = function ( obj )
         domains: obj.domains || [],                  // Array of hostnames to match this filter
         color_top: obj.color_top || "#ffffff",       // Gradient will fade from this
         color_bottom: obj.color_bottom || "#ffffff", // Gradient will fade to this
-        readonly: obj.readonly || true,              // Read only (implies built-in, immutable group)
+        readonly: obj.readonly || false,              // Read only (implies built-in, immutable group)
         enabled: obj.enabled || true                 // Turn this group on/off
     };
 };
@@ -109,30 +107,64 @@ GagConfig.prototype.mergeBaseAndUser = function ( group_a, group_b )
 {
     var merged = [];
 
+//    for ( var a in group_a )
+//    {
+//        var group_a_name = group_a[ a ].name.trim().toLowerCase();
+//        var readonly = group_a[a].readonly;
+//        var foo = this.cloneGroup( group_a[a] );
+//
+//        // Look for an existing group name in group_b
+//        for ( var b in group_b ) {
+//            var group_b_name = group_b[ b ].name.trim().toLowerCase();
+//
+//            if ( group_a_name == group_b_name ) {
+//                // overwrite properties that exist in A with those from B, if they exist
+//                for ( var field in group_b[b] ) {
+//                    if ( readonly && field == "domains" ) {
+//                        continue;
+//                    }
+//
+//                    if ( foo.hasOwnProperty( field ) ) {
+//                        foo[field] = group_b[b][field];
+//                    }
+//                }
+//            }
+//        }
+//
+//        merged.push( foo );
+//    }
+
     for ( var a in group_a ) {
-        var group_a_name = group_a[ a ].name.trim().toLowerCase();
-        var readonly = group_a[a].readonly;
-        var foo = this.cloneGroup( group_a[a] );
+        merged.push( group_a[a] );
+    }
 
-        // Look for an existing group name in group_b
-        for ( var b in group_b ) {
-            var group_b_name = group_b[ b ].name.trim().toLowerCase();
+    for ( var b in group_b ) {
+        var have_found_existing = false;
+        for ( var m in merged ) {
+            if ( merged[m].name.trim().toLowerCase() == group_b[b].name.trim().toLowerCase() ) {
+                // existing item, merge them
+                var foo = this.cloneGroup( merged[m] );
+                for ( var field in merged[m] ) {
 
-            if ( group_a_name == group_b_name ) {
-                // overwrite properties that exist in A with those from B, if they exist
-                for ( var field in group_b[b] ) {
-                    if ( readonly && field == "domains" ) {
-                        continue;
-                    }
+                    // skip protected fields, preserving the existing group_a version
+//                    if ( merged[m].readonly ) {
+                        if ( field == "name" || field == "domains" ) {
+                            continue;
+                        }
+//                    }
 
                     if ( foo.hasOwnProperty( field ) ) {
                         foo[field] = group_b[b][field];
                     }
                 }
+                have_found_existing = true;
+                merged[m] = foo;
             }
-        }
 
-        merged.push( foo );
+        }
+        if ( !have_found_existing ) {
+            merged.push( group_b[b] );
+        }
     }
 
     return merged;
@@ -189,22 +221,27 @@ GagConfig.prototype.loadConfig = function ( on_ready_callback )
             // So, we have to wait through the callback, and there might not even
             // be anything. Geesh.
 
+
+
             if ( user_conf ) {
-                var parsed_user_shit = JSON.parse( user_conf );
-                config.groups = self.mergeBaseAndUser( config.groups, parsed_user_shit.groups );
+                try {
+                    var parsed_user_shit = JSON.parse( user_conf );
+                    config.groups = self.mergeBaseAndUser( config.groups, parsed_user_shit.groups );
+                }
+                catch(e) {
+                    console.error("Corrupted config. Ignoring. (" + e + ")");
+                }
             }
 
-            var arr = [];
-            for ( var i in config.groups ) {
-                config.groups[i] = self.createGroupObject( config.groups[i] );
-                arr.push( config.groups[i] );
-            }
-            console.table( arr );
+//            var arr = [];
+//            for ( var i in config.groups ) {
+//                config.groups[i] = self.createGroupObject( config.groups[i] );
+//                arr.push( config.groups[i] );
+//            }
+//            console.table( arr );
 
             // this callback is a throwback to when I was using chrome cloud
             // storage; keeping this here in case I move back to that
-
-            //self._config = config;
 
             var foo = on_ready_callback.bind( self );
             foo( config ); //FIXME: m0ar el3gan7 plz
@@ -213,3 +250,5 @@ GagConfig.prototype.loadConfig = function ( on_ready_callback )
 };
 
 GagConfig.MSG_GET_USER_CONFIG = "getUserConfig";
+GagConfig.MSG_POPUP_SAVED = "popupSaved";
+GagConfig.MSG_POPUP_CLOSED = "popupClosed";

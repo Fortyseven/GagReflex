@@ -8,7 +8,6 @@ var Gag = function ( config )
 {
 //    this.self = this;
 
-    this.INIT_COMPLETE_KEY = 'init_complete';
     this.ARTICLE_CLASS = "div[aria-label=\"Story\"]";
     this.ARTICLE_LINK_SELECTOR = "a._6kt, a._52c6, div._6m6>a, userContent a";
 
@@ -72,13 +71,22 @@ var Gag = function ( config )
         return has_found_match;
     };
 
-    this.buildCSSRules = function ()
+    this.unbindAllCSSRules = function ()
     {
-        if ( !this._config ) {
+        //console.log(document.classList);
+    };
+    /**
+     *
+     */
+    this.rebuildCSSRules = function (config)
+    {
+        if ( !config ) {
             throw "Invalid or undefined gag reflex config";
         }
 
-        var groups = this._config.groups;
+        //this.unbindAllCSSRules();
+
+        var groups = config.groups;
 
         for ( var gi in groups ) {
             var css_name = "gr_" + groups[gi].name.toLowerCase().replace( " ", "-" );
@@ -91,7 +99,7 @@ var Gag = function ( config )
             var new_style = "<style>." + css_name + " {" + css_grad + " !important; box-shadow : 0 0 10px #a16f0e !important;}</style>";
 
             $( new_style ).appendTo( "head" );
-            console.warn( css_name, new_style );
+            //console.warn( css_name, new_style );
 
             groups[gi].css_name = css_name;
 
@@ -101,9 +109,9 @@ var Gag = function ( config )
     /********************************************************
      * Begin processing the current page
      */
-    this.run = function ()
+    this.run = function(config)
     {
-        this.buildCSSRules();
+        this.rebuildCSSRules(this._config);
         setTimeout( this.runHighlighting.bind( this ), this.REFRESH_DELAY );
     };
 };

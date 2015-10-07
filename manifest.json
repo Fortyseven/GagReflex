@@ -27,10 +27,6 @@
                 "app/gag.js",
                 "app/gag_config.js",
                 "app/content.js"
-
-            ],
-            "css":     [
-                "app/assets/style.css"
             ]
         }
     ],

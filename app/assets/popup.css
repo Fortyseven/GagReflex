@@ -1,65 +1,175 @@
-html, body {
-    min-width  : 512px;
-    min-height : 512px;
+html,
+body {
+  min-width: 512px;
+  min-height: 512px;
 }
-
-#Content {
-    width : 485px;
+#Content,
+input,
+label,
+.btn,
+textarea {
+  /*width : 485px;*/
+  font-family: "Roboto";
 }
-
+input,
+textarea {
+  background: white;
+}
 .menu-icon {
-    padding-left : 1rem;
+  padding-left: 1rem;
 }
-
-.filter-group.mdl-card {
-    width  : 485px;
-    margin : 1rem;
+/******************************/
+.group-entry {
+  padding: 0.75rem 0.75rem 1rem;
+  margin: 0.5rem;
+  overflow: visible !important;
+  cursor: pointer;
 }
-
-.filter-group label,
-.filter-group textarea {
-    display : block;
+.group-entry .name {
+  /*height: 2em;*/
+  font-weight: bold;
 }
-
-.filter-group input[type="color"] {
-    display : inline-block;
+.group-entry .count {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #aaaaaa;
 }
-
-.filter-group label {
-    font-weight : bold;
-    color       : #aaaaaa;
-    padding-top : 1rem;
+.group-entry .mdl-card {
+  width: 485px;
+  margin: 1rem;
 }
-
-.filter-group input[type="text"],
-.filter-group textarea {
-    outline       : none;
-    border        : none;
-    box-shadow    : 0px 0px 5px #cccccc;
-    padding       : 0.5rem;
-    border-radius : 3px;
-    font-size     : 1.2rem;
+.group-entry .btn {
+  display: inline-block;
+  color: darkred;
+  padding: 0.35rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 50ms;
+  text-transform: uppercase;
 }
-
-.filter-group textarea {
-    width : 440px;
+/*******************************/
+#EditBox {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.65) 100%);
+  /**************/
 }
-
-.filter-group .group-colors input {
-    margin-left   : 1rem;
-    border        : none !important;
-    outline       : none !important;
-    padding       : 0 !important;
-    background    : transparent !important;
-    box-shadow    : 0px 1px 4px #cccccc;
-    border-radius : 3px;
-    height        : 2rem;
-    width         : 5rem;
+#EditBox label {
+  font-weight: bold;
+  color: darkgoldenrod;
+  font-size: 0.9rem;
+  display: block;
+  padding-top: 0.5rem;
 }
-
-.filter-group {
-    /*box-shadow : 0px 0px 5px #aaaaaa;*/
-    padding  : 0.75rem 0.75rem 1rem;
-    margin   : 0.5rem;
-    overflow : visible !important;
+#EditBox .dialog {
+  position: relative;
+  width: 90%;
+  background: linear-gradient(to bottom, #ffffff 0%, #eeeeee 80%, #bbbbbb 100%);
+  z-index: 100;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 0px 8px black;
+  padding: 1em;
+  /*border       : 1px solid red;*/
+}
+#EditBox .dialog .group-disabled {
+  color: #aaaaaa;
+  background: #dddddd;
+}
+#EditBox .dialog .top-row {
+  display: flex;
+}
+#EditBox .dialog .top-row .name {
+  flex: auto;
+  margin-right: 2rem;
+}
+#EditBox .dialog .top-row .name input[type="text"] {
+  width: 100%;
+}
+#EditBox .dialog .top-row .colors {
+  flex: 10%;
+}
+#EditBox .dialog .top-row .colors label input {
+  display: block;
+}
+#EditBox .dialog .top-row .colors label {
+  float: left;
+  padding-right: 1rem;
+}
+#EditBox .dialog .top-row div {
+  display: inline-block;
+  float: left;
+}
+#EditBox .dialog .bottom-row {
+  margin-top: 2rem;
+}
+#EditBox .dialog .bottom-row .left {
+  float: left;
+}
+#EditBox .dialog .bottom-row .right {
+  float: right;
+}
+#EditBox .dialog .bottom-row .btn {
+  display: inline-block;
+  color: darkred;
+  padding: 0.35rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 50ms;
+  text-transform: uppercase;
+}
+#EditBox .dialog .bottom-row .btn:hover {
+  color: red;
+  transition: all 250ms;
+}
+#EditBox .dialog .bottom-row .btn-save:hover {
+  color: #00cc00;
+}
+#EditBox .group-colors input {
+  margin-left: 1rem;
+  border: none !important;
+  outline: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: 0px 1px 4px #cccccc;
+  border-radius: 3px;
+  height: 2rem;
+  width: 5rem;
+}
+#EditBox input[type="text"],
+#EditBox textarea {
+  border: none;
+  box-shadow: 0px 0px 5px #cccccc;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: "Roboto Mono";
+}
+#EditBox textarea {
+  font-size: 0.85rem;
+  line-height: 1.2em;
+  height: 150px;
+}
+.btn-new {
+  display: block;
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+}
+/******************************/
+.clearfix {
+  clear: both;
 }

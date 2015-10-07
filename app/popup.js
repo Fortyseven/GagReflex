@@ -1,125 +1,253 @@
 "use strict";
 
-const SATIRE_ID = "satire_select";
-const QUESTIONABLE_ID = "questionable_select";
-
-const TEMPLATE_GROUP_FORM =
-        '<!-- FILTER GROUP ---------------------------------------------------- -->' +
-        '<div class="mdl-card mdl-shadow--2dp filter-group">' +
-        '<span>' +
-        '<div class="mdl-tooltip mdl-tooltip--large" for="group-color-top-{{id}}">Color Top</div>' +
-        '<div class="mdl-tooltip mdl-tooltip--large" for="group-color-bottom-{{id}}">Color Bottom</div>' +
-        '<div class="mdl-tooltip mdl-tooltip--large" for="group-name-{{id}}">Unique name for this group of sites</div>' +
-        '<div class="mdl-tooltip mdl-tooltip--large" for="group-domains-{{id}}">Comma separated list of hostnames ("example.com, potato.com, chungus.com")</div>' +
-        '</span>' +
-        '<form action="#">' +
-        '<div>' +
-        '<label>Name</label><input type="text" name="group-name" id="group-name-{{id}}" value="{{name}}"/>' +
-        '<span class="group-colors">' +
-        '<input class="group-color-top" id="group-color-top-{{id}}" type="color" name="group-color-top" value="{{color_top}}"/>' +
-        '<input class="group-color-bottom" type="color" id="group-color-bottom-{{id}}" name="group-color-bottom" value="{{color_bottom}}"/>' +
-        '</span>' +
-        '</div>' +
-
-        '<div>' +
-        '<label>Hostnames <textarea rows=6 id="group-domains-{{id}}" name="group-domains">{{csv_domains}}</textarea></label>' +
-        '</div>' +
-
-        '<div class="group-options mdl-card__menu" style="clear: both">' +
-        '<button id="group-option-menu-{{id}}" class="mdl-button mdl-js-button mdl-button--icon">' +
-        '<i class="material-icons">more_vert</i>' +
-        '</button>' +
-        '<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="group-option-menu-{{id}}">' +
-        '<li class="mdl-menu__item">Delete Group</li>' +
-        '</ul>' +
-        '</div>' +
-        '</form>' +
-        '</div>' +
-        '<!-- FILTER GROUP END ------------------------------------------------- -->';
-
-var gag = new Gag();
-var is_first_run = false;
-var config_data = null;
-
-window.onload = function ()
+var Popup = function()
 {
-    if ( localStorage[Gag.INIT_COMPLETE_KEY] === null ) {
-        is_first_run = true;
-        console.log( "First run; loading" );
+    var _gagconfig;
+    var _config_data = null;
+    var _edit_element = null;
+    var _edit_form = null;
+    var _self = this;
+
+    this.onEditCancel = function ()
+    {
+        _edit_element.hide();
+    };
+
+    this.onEditDeleteGroup = function()
+    {
+        if (confirm("Really delete this group?")) {
+            var id = _edit_form.data( 'group_id' );
+            this._config_data.groups.splice(id,1);
+            this.saveConfig();
+            _self.refreshContents();
+            this.onEditCancel();
+        }
     }
 
-    bindInputs();
+    this.resetEditForm = function ()
+    {
+        _edit_form.data( 'group_id', null );
+        $( ".group-domains", _edit_form ).prop( "disabled", false ).removeClass( "group-disabled" );
+        $( ".group-name", _edit_form ).prop( "disabled", false ).removeClass( "group-disabled" );
+        $( "#btnEditDelete", _edit_form ).show();
+    };
 
-    // Send a message to our background page to let it know we've ended the popup session
-    // We'll pass it the updated config information so it can save it and put it into action
+    this.saveConfig = function()
+    {
+        chrome.extension.sendMessage( { method: GagConfig.MSG_POPUP_SAVED, config: JSON.stringify( this._config_data ) } );
+    };
 
-    $( window ).unload( function () {
-            var app_data = {
-                items: [
-                    {a: 'a', b: 'b'},
-                    {a: 'a', b: 'b'},
-                    {a: 'a', b: 'b'},
-                    {a: 'a', b: 'b'}
-                ]
-            };
-
-            chrome.extension.sendMessage(
-                    {
-                        type:   "popup-closed",
-                        config: app_data
-                    } );
+    this.validateGroup = function ( new_group, is_new )
+    {
+        if ( new_group.name.trim().length < 1 ) {
+            throw "Valid group name required.";
         }
-    );
-
-    gag.loadConfig(function(){
-        config_data = gag.getConfig();
-        refreshContents();
-    });
-};
-
-/**
- * Bind inputs on popup.html
- * (We can't do this from inside the HTML file because of Chrome security.)
- */
-function bindInputs()
-{
-    $( "#btnRestoreDefaults" ).click( function () {
-        if ( confirm( "This will delete all your settings, and restore default groups. Are you sure?" ) ) {
-            gag.resetConfig();
+        if ( new_group.domains.length < 1 ) {
+            throw "Domain list is empty.";
         }
-    } );
-}
+        if ( is_new ) {
+            for ( var i in this._config_data.groups ) {
+                if ( this._config_data.groups[i].name.trim().toLowerCase() == new_group.name.trim().toLowerCase() ) {
+                    throw "Cannot use existing group name."
+                }
+            }
+        }
+    };
 
-/**
- * Load up first time run defaults
- */
-function setDefaults()
-{
-    localStorage["not_first_run"] = true;
-}
+    this.onEditSaveGroup = function()
+    {
+        var id = _edit_form.data( 'group_id' );
 
-/**
- * Refresh the contents of the popup #Contents with our config data
- */
-function refreshContents()
-{
-    var $content = $( "#Content" );
-    $content.empty();
+        console.log( 'Saving id ', id );
 
-    var config = gag.getConfig();
+        var new_group = _gagconfig.createGroupObject( this._config_data.groups[id] || null );
 
-    for ( var i = 0; i < config.groups.length; i++ ) {
+        new_group.name = $( ".group-name", _edit_form ).val();
+        new_group.color_top = $( ".group-color-top", _edit_form ).val();
+        new_group.color_bottom = $( ".group-color-bottom", _edit_form ).val();
 
-        var compiled = MicroMustache.render( TEMPLATE_GROUP_FORM, {
-            id:           i,
-            name:         config.groups[i].name,
-            csv_domains:  config.groups[i].domains.join( ', ' ),
-            color_top:    config.groups[i].color_top,
-            color_bottom: config.groups[i].color_bottom
+        var doms = new_group.domains = $( ".group-domains", _edit_form ).val().split( ',' );
+        new_group.domains = [];
+        for ( var i in doms ) {
+            doms[i] = doms[i].trim();
+            if (doms[i].length > 0) new_group.domains.push(doms[i]);
+        }
+        new_group.enabled = $( ".group-enabled", _edit_form )[0].checked;
+
+        try {
+            this.validateGroup(new_group, id == null);
+
+            // If this is a new group, push it onto the groups array, otherwise
+            // replace the original entry with the updated record
+            if ( id === undefined ) {
+                this._config_data.groups.push( new_group );
+            }
+            else {
+                this._config_data.groups[id] = new_group;
+            }
+
+            this.resetEditForm();
+
+            ///// debug
+            console.log( "saved config: ", this._config_data );
+
+            for ( var i in this._config_data.groups ) {
+                console.table( [this._config_data.groups[i]] );
+            }
+
+            console.log('-----------------');
+
+            this.saveConfig();
+
+            _self.refreshContents();
+
+            this.onEditCancel();
+        }
+        catch(e) {
+            alert("Could not save: " + e);
+        }
+    }
+    /*********************************************************************
+     * Bind inputs on popup.html
+     * (We can't do this from inside the HTML file because of Chrome security.)
+     */
+    function bindInputs()
+    {
+        $( "#btnEditDelete", _edit_form ).click( function () {
+            _self.onEditDeleteGroup();
         } );
 
-        $content.append( compiled );
+        $( "#btnEditCancel", _edit_form ).click( function () {
+            _self.onEditCancel();
+        } );
+
+        $( "#btnEditSave", _edit_form ).click( function () {
+            _self.onEditSaveGroup();
+        } );
+
+        $(".btn-new button" ).click(function(){
+            _self.EditGroup(null);
+        });
     }
 
-    componentHandler.upgradeDom();
+
+    this.TEMPLATE_GROUP_FORM = "<div data-group-id='{{id}}' class='mdl-shadow--2dp group-entry' style='{{grad_css}}'>" +
+                                   "<span class='name'>{{name}}</span>"+
+                                    "<span class='count'> ({{count}} domain{{plural}})</span>" +
+                               "</div>";
+
+    /*********************************************************************
+     * Refresh the contents of the popup #Contents with our config data
+     */
+    this.refreshContents = function()
+    {
+        var $content = $( "#Content" );
+        $content.empty();
+
+        for ( var i = 0; i < this._config_data.groups.length; i++ ) {
+
+            var compiled = $(MicroMustache.render( this.TEMPLATE_GROUP_FORM, {
+                id:           i,
+                name:         this._config_data.groups[i].name,
+                enabled:      this._config_data.groups[i].enabled,
+                grad_css: "background:-webkit-gradient(linear, left top, left bottom, " +
+                          "color-stop(100%, " + this._config_data.groups[i].color_bottom + "), " +
+                          "color-stop(0%, " + this._config_data.groups[i].color_top + "))",
+//                color_top:    this._config_data.groups[i].color_top,
+//                color_bottom: this._config_data.groups[i].color_bottom,
+                count:        this._config_data.groups[i].domains.length,
+                plural:       (this._config_data.groups[i].domains.length > 1) ? "s" : ""
+            } ));
+
+            $(compiled).click(function(){
+                _self.EditGroup( $( this ).data( "group-id" ) );
+            });
+
+//            if (this._config_data.groups[i].readonly) {
+//                $("textarea, input", compiled ).attr("readonly", "1" ).attr("disabled", "1");
+//            }
+
+            $content.append( compiled );
+        }
+
+        componentHandler.upgradeDom();
+    }
+
+    /*********************************************************************
+     *
+     */
+    this.populateEditForm = function( id, group )
+    {
+        _edit_element.show();
+
+        this.resetEditForm();
+
+        if (!group || group.readonly) {
+            $( "#btnEditDelete", _edit_form ).hide();
+        }
+
+        var new_group = _gagconfig.createGroupObject( group );
+
+        console.info("Editing ", id, new_group.name);
+        _edit_form.data("group_id", id);
+
+        $( ".group-name", _edit_form ).val( new_group.name );
+        $( ".group-domains", _edit_form ).val( new_group.domains.join(', ') );
+        $( ".group-color-top", _edit_form ).val( new_group.color_top );
+        $( ".group-color-bottom", _edit_form ).val( new_group.color_bottom );
+        $( ".group-enabled", _edit_form ).attr( "checked", new_group.enabled ? "checked" : null );
+
+        if (new_group.readonly) {
+            $( ".group-domains", _edit_form ).prop("disabled", true ).addClass("group-disabled");
+            $( ".group-name", _edit_form ).prop("disabled", true ).addClass("group-disabled");
+        }
+    };
+
+    /*********************************************************************
+     *
+     */
+    function init()
+    {
+        // Send a message to our background page to let it know we've ended the popup session
+        // We'll pass it the updated config information so it can save it and put it into action
+
+        $( window ).unload( function () {
+            chrome.extension.sendMessage({ method: GagConfig.MSG_POPUP_CLOSED, config: _config_data });
+        });
+
+        _edit_element = $("#EditBox");
+        _edit_form = $(".dialog", _edit_element);
+        _edit_element.hide();
+
+        _gagconfig = new GagConfig(function(config) {
+            _self._config_data = config;
+            _self.refreshContents();
+        });
+
+        bindInputs();
+    }
+
+    // construct
+    init();
 }
+
+Popup.prototype.EditGroup = function ( id )
+{
+    if ( id === null ) {
+        // New group
+        this.populateEditForm( null, null );
+    }
+    else {
+        // Existing group
+        this.populateEditForm( id, this._config_data.groups[id] );
+    }
+}
+
+
+/**************************************************************************/
+var popup = null;
+
+window.onload = function()
+{
+    popup = new Popup();
+};
