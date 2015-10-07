@@ -1,10 +1,12 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,400italic,700italic);
+
 html, body {
   min-width  : 512px;
   min-height : 512px;
 }
 
 #Content, input, label, .btn, textarea {
-  /*width : 485px;*/
   font-family : "Roboto";
 }
 
@@ -17,21 +19,29 @@ input, textarea {
 }
 
 /******************************/
-.group-entry {
-  padding  : 0.75rem 0.75rem 1rem;
-  margin   : 0.5rem;
-  overflow : visible !important;
-  cursor: pointer;
+div.group-entry {
+  padding   : 0.75rem 0.75rem 1rem;
+  margin    : 0.5rem;
+  overflow  : visible !important;
+  cursor    : pointer;
+  //  text-shadow: 0 0 5px #888;
+  font-size : 1.5em;
 
   .name {
     /*height: 2em;*/
-    font-weight : bold;
+    font-weight         : bold;
+    color               : white;
+    -webkit-text-stroke : 0.75px black;
+    text-shadow         : -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 2px 0 #000000, 1px 2px 0 #000000;
+    font-family         : "Roboto Condensed";
   }
 
   .count {
-    font-style : italic;
-    font-size  : 0.8rem;
-    color      : #aaaaaa;
+    padding-left : 0.5rem;
+    font-style   : italic;
+    font-size    : 0.8rem;
+    color        : white;
+    text-shadow  : -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
   }
 
   .mdl-card {

@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,400italic,700italic);
 html,
 body {
   min-width: 512px;
@@ -8,7 +10,6 @@ input,
 label,
 .btn,
 textarea {
-  /*width : 485px;*/
   font-family: "Roboto";
 }
 input,
@@ -19,26 +20,33 @@ textarea {
   padding-left: 1rem;
 }
 /******************************/
-.group-entry {
+div.group-entry {
   padding: 0.75rem 0.75rem 1rem;
   margin: 0.5rem;
   overflow: visible !important;
   cursor: pointer;
+  font-size: 1.5em;
 }
-.group-entry .name {
+div.group-entry .name {
   /*height: 2em;*/
   font-weight: bold;
+  color: white;
+  -webkit-text-stroke: 0.75px black;
+  text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 2px 0 #000000, 1px 2px 0 #000000;
+  font-family: "Roboto Condensed";
 }
-.group-entry .count {
+div.group-entry .count {
+  padding-left: 0.5rem;
   font-style: italic;
   font-size: 0.8rem;
-  color: #aaaaaa;
+  color: white;
+  text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
 }
-.group-entry .mdl-card {
+div.group-entry .mdl-card {
   width: 485px;
   margin: 1rem;
 }
-.group-entry .btn {
+div.group-entry .btn {
   display: inline-block;
   color: darkred;
   padding: 0.35rem;
