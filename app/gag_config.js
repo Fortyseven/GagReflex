@@ -213,7 +213,7 @@ GagConfig.prototype.loadConfig = function ( on_ready_callback )
                     config.groups = self.mergeBaseAndUser( config.groups, parsed_user_shit.groups );
                 }
                 catch(e) {
-                    console.error("Corrupted config. Ignoring. (" + e + ")");
+                    console.warn("Corrupted config or non-existent. Ignoring.");// (" + e + ")");
                 }
             }
 
