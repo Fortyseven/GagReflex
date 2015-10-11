@@ -71,10 +71,6 @@ var Gag = function ( config )
         return has_found_match;
     };
 
-    this.unbindAllCSSRules = function ()
-    {
-        //console.log(document.classList);
-    };
     /**
      *
      */
