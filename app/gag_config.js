@@ -228,3 +228,4 @@ GagConfig.prototype.loadConfig = function ( on_ready_callback )
 GagConfig.MSG_GET_USER_CONFIG = "getUserConfig";
 GagConfig.MSG_POPUP_SAVED = "popupSaved";
 GagConfig.MSG_POPUP_CLOSED = "popupClosed";
+GagConfig.MSG_POPUP_FACTORYRESET = "popupFactoryReset";

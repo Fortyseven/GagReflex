@@ -130,6 +130,12 @@ var Popup = function()
      */
     function bindInputs()
     {
+        $("#btnRestoreDefaults" ).click(function() {
+            if (confirm("This will delete all of your groups and reset the extension. Are you sure?")) {
+                chrome.extension.sendMessage( { method: GagConfig.MSG_POPUP_FACTORYRESET } );
+                window.location.reload()
+            }
+        });
         $( "#btnEditDelete", _edit_form ).click( function () {
             _self.onEditDeleteGroup();
         } );

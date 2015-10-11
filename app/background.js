@@ -13,6 +13,9 @@ $( document ).ready( function () {
                          localStorage['config'] = msg.config;
                      }
                  }
+                 else if ( msg.method == GagConfig.MSG_POPUP_FACTORYRESET ) {
+                     localStorage['config'] = null;
+                 }
              }
      );
 });
