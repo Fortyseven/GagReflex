@@ -9,7 +9,7 @@ var Popup = function()
     var _self = this;
 
     /**
-     *
+     * Callback when 'cancel' is clicked.
      */
     this.onEditCancel = function ()
     {
@@ -17,32 +17,36 @@ var Popup = function()
     };
 
     /**
-     *
+     * Callback when 'delete' is clicked. Confirms and performs group deletion.
      */
     this.onEditDeleteGroup = function()
     {
         if (confirm("Really delete this group?")) {
             var id = _edit_form.data( 'group_id' );
             this._config_data.groups.splice(id,1);
+
             this.saveConfig();
+
             _self.refreshContents();
+
             this.onEditCancel();
         }
     }
 
     /**
-     *
+     * Restore edit page to sane defaults.
      */
     this.resetEditForm = function ()
     {
         _edit_form.data( 'group_id', null );
         $( ".group-domains", _edit_form ).prop( "disabled", false ).removeClass( "group-disabled" );
         $( ".group-name", _edit_form ).prop( "disabled", false ).removeClass( "group-disabled" );
+        $( ".group-enabled", _edit_form ).prop( "checked", true );
         $( "#btnEditDelete", _edit_form ).show();
     };
 
     /**
-     *
+     * Sends the current config settings to the background page for storing in localStorage
      */
     this.saveConfig = function()
     {
@@ -50,6 +54,8 @@ var Popup = function()
     };
 
     /**
+     * Validates edit form data.
+     * Throws exception if form contents are not valid.
      *
      * @param new_group
      * @param is_new
@@ -72,7 +78,7 @@ var Popup = function()
     };
 
     /**
-     *
+     * Callback when 'save' is clicked
      */
     this.onEditSaveGroup = function()
     {
@@ -124,7 +130,7 @@ var Popup = function()
         }
     }
 
-    /*********************************************************************
+    /**
      * Bind inputs on popup.html
      * (We can't do this from inside the HTML file because of Chrome security.)
      */

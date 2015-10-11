@@ -62,9 +62,11 @@ var GagConfig = function ( on_loading_complete_callback )
 };
 
 /**
+ * Returns a new, valid group object. If group_obj is provided, it will clone the
+ * contents into the new object. Defaults will be provided, if new or missing.
  *
- * @param obj
- * @returns {{name: (*|string|compiled.name|Function|name|string), domains: (*|Array), color_top: (*|string|compiled.color_top|string), color_bottom: (*|string|compiled.color_bottom|string), readonly: (*|boolean|P.readonly), is_enabled: (*|boolean|is_enabled)}}
+ * @param group_obj
+ * @return {{name: string, domains: Array, color_top: string, readonly: number, is_enabled: number}}
  */
 GagConfig.prototype.createGroupObject = function ( obj )
 {
@@ -103,6 +105,8 @@ GagConfig.prototype.cloneGroup = function ( group )
 }
 
 /**
+ * Merges two config objects. This is used to overwrite the built-in config with
+ * user modified settings.
  *
  * @param group_a
  * @param group_b
@@ -148,9 +152,11 @@ GagConfig.prototype.mergeBaseAndUser = function ( group_a, group_b )
     return merged;
 };
 
+/**
 /********************************************************
  * Returns a clean install default configuration object
- * @returns {{groups: *[]}}
+ *
+ * @return {{groups: *[]}}
  */
 GagConfig.prototype.getBuiltInGroups = function ()
 {
@@ -176,8 +182,10 @@ GagConfig.prototype.getBuiltInGroups = function ()
     };
 };
 
-/********************************************************
- * Retrieve the config data from client local storage
+/**
+ * Retrieve the config data from client local storage. Calls on_ready_callback with
+ * when config object when ready.
+ *
  * @param on_ready_callback
  */
 GagConfig.prototype.loadConfig = function ( on_ready_callback )
