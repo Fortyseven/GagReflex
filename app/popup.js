@@ -92,17 +92,21 @@ var Popup = function()
 
         var doms = new_group.domains = $( ".group-domains", _edit_form ).val().split( ',' );
         new_group.domains = [];
+
         for ( var i in doms ) {
             doms[i] = doms[i].trim();
-            if (doms[i].length > 0) new_group.domains.push(doms[i]);
+            if ( doms[i].length > 0 ) {
+                new_group.domains.push( doms[i] );
+            }
         }
+
         new_group.is_enabled = $( ".group-enabled", _edit_form )[0].checked ? 1 : 0;
 
         try {
-            this.validateGroup(new_group, id == null);
-
             // If this is a new group, push it onto the groups array, otherwise
             // replace the original entry with the updated record
+
+            this.validateGroup( new_group, id == null );
             if ( id === undefined ) {
                 this._config_data.groups.push( new_group );
             }
@@ -142,6 +146,10 @@ var Popup = function()
                 window.location.reload()
             }
         });
+        $("#btnChromeStorePage" ).click(function() {
+            chrome.tabs.create({url:"https://chrome.google.com/webstore/detail/gag-reflex/aceebhdjinpebfnbmbcgcmnldkfppanh"});
+        });
+
         $( "#btnEditDelete", _edit_form ).click( function () {
             _self.onEditDeleteGroup();
         } );
@@ -161,7 +169,7 @@ var Popup = function()
 
 
     this.TEMPLATE_GROUP_FORM = "<div data-group-id='{{id}}' class='mdl-shadow--2dp group-entry' style='{{grad_css}}'>" +
-                                   "<span class='name'>{{name}}</span>"+
+                                    "<span class='name {{is_disabled}}'>{{name}}</span>"+
                                     "<span class='count'> ({{count}} domain{{plural}})</span>" +
                                "</div>";
 
@@ -175,18 +183,20 @@ var Popup = function()
 
         for ( var i = 0; i < this._config_data.groups.length; i++ ) {
 
-            var compiled = $(MicroMustache.render( this.TEMPLATE_GROUP_FORM, {
-                id:           i,
-                name:         this._config_data.groups[i].name,
-                is_enabled:      this._config_data.groups[i].is_enabled,
 //                grad_css: "background:-webkit-gradient(linear, left top, left bottom, " +
 //                          "color-stop(100%, " + this._config_data.groups[i].color_bottom + "), " +
 //                          "color-stop(0%, " + this._config_data.groups[i].color_top + "))",
-                grad_css: "background-color: " + this._config_data.groups[i].color_top,
 //                color_top:    this._config_data.groups[i].color_top,
 //                color_bottom: this._config_data.groups[i].color_bottom,
-                count:        this._config_data.groups[i].domains.length,
-                plural:       (this._config_data.groups[i].domains.length > 1) ? "s" : ""
+
+
+            var compiled = $(MicroMustache.render( this.TEMPLATE_GROUP_FORM, {
+                id:             i,
+                name:           this._config_data.groups[i].name,
+                is_disabled:    this._config_data.groups[i].is_enabled ? "" : "is_disabled",
+                grad_css:       "background-color: " + this._config_data.groups[i].color_top,
+                count:          this._config_data.groups[i].domains.length,
+                plural:         (this._config_data.groups[i].domains.length > 1) ? "s" : ""
             } ));
 
             $(compiled).click(function(){
@@ -212,9 +222,6 @@ var Popup = function()
 
         this.resetEditForm();
 
-        if ( !group || group.readonly ) {
-            $( "#btnEditDelete", _edit_form ).hide();
-        }
         var new_group = _gagconfig.createGroupObject( group );
 
         _edit_form.data( "group_id", id );
@@ -223,12 +230,16 @@ var Popup = function()
         $( ".group-domains", _edit_form ).val( new_group.domains.join( ', ' ) );
         $( ".group-color-top", _edit_form ).val( new_group.color_top );
         //$( ".group-color-bottom", _edit_form ).val( new_group.color_bottom );
+        if (new_group.is_enabled == 1)
+            $( ".group-enabled", _edit_form ).prop( "checked",  true);
+        else
+            $( ".group-enabled", _edit_form ).prop( "checked",  false );
 
-        $( ".group-enabled", _edit_form ).attr( "checked", new_group.is_enabled ? "checked" : null );
 
-        if ( new_group.readonly == 1 ) {
+        if ( new_group.readonly === 1 ) {
             $( ".group-domains", _edit_form ).prop( "disabled", true ).addClass( "group-disabled" );
             $( ".group-name", _edit_form ).prop( "disabled", true ).addClass( "group-disabled" );
+            $( "#btnEditDelete", _edit_form ).hide();
         }
     };
 

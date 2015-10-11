@@ -68,41 +68,30 @@ var GagConfig = function ( on_loading_complete_callback )
  * @param group_obj
  * @return {{name: string, domains: Array, color_top: string, readonly: number, is_enabled: number}}
  */
-GagConfig.prototype.createGroupObject = function ( obj )
+GagConfig.prototype.createGroupObject = function ( group_obj )
 {
-    obj = obj || {};
+    var new_obj = {
+        name:       "",
+        domains:    [],
+        color_top:  "#FFFFFF",
+        readonly:   0,
+        is_enabled: 1
+    };
 
-    if (obj.is_enabled === undefined) {
-        obj.is_enabled == 1;
+    if ( !group_obj ) {
+        return new_obj;
     }
 
-    return {
-        name: obj.name || "",                        // Name of the group
-        domains: obj.domains || [],                  // Array of hostnames to match this filter
-        color_top: obj.color_top || "#ffffff",       // Gradient will fade from this
-        //color_bottom: obj.color_bottom || "#ffffff", // Gradient will fade to this
-        readonly: obj.readonly || false,              // Read only (implies built-in, immutable group)
-        is_enabled: obj.is_enabled
-    };
-};
-
-/**
- *
- * @param group
- * @returns {*}
- */
-GagConfig.prototype.cloneGroup = function ( group )
-{
-    var clone = this.createGroupObject();
-
-    for ( var i in clone ) {
-        if ( group.hasOwnProperty( i ) ) {
-            clone[i] = group[i];
+    for ( var i in new_obj ) {
+        if ( group_obj.hasOwnProperty( i ) ) {
+            if ( group_obj[i] !== undefined ) {
+                new_obj[i] = group_obj[i];
+            }
         }
     }
 
-    return clone;
-}
+    return new_obj;
+};
 
 /**
  * Merges two config objects. This is used to overwrite the built-in config with
@@ -125,7 +114,7 @@ GagConfig.prototype.mergeBaseAndUser = function ( group_a, group_b )
         for ( var m in merged ) {
             if ( merged[m].name.trim().toLowerCase() == group_b[b].name.trim().toLowerCase() ) {
                 // existing item, merge them
-                var foo = this.cloneGroup( merged[m] );
+                var foo = this.createGroupObject( merged[m] );
                 for ( var field in merged[m] ) {
 
                     // skip protected fields, preserving the existing group_a version
@@ -153,7 +142,6 @@ GagConfig.prototype.mergeBaseAndUser = function ( group_a, group_b )
 };
 
 /**
-/********************************************************
  * Returns a clean install default configuration object
  *
  * @return {{groups: *[]}}
