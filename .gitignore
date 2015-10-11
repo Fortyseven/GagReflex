@@ -1,1 +1,9 @@
 .idea
+bower_components/micromustache/.bower.json
+bower_components/micromustache/AUTHORS
+bower_components/micromustache/README.md
+bower_components/micromustache/dist/micromustache.js
+bower_components/micromustache/makefile
+bower_components/micromustache/package.json
+bower_components/micromustache/src/
+bower_components/micromustache/test/
