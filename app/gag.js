@@ -29,8 +29,10 @@ var Gag = function ( config )
 
                     if ( href != null ) {
                         for ( var gi in gag._config.groups ) {
-                            if ( parse( gag._config.groups[gi], href, this ) ) {
-                                break;
+                            if ( gag._config.groups[gi].is_enabled ) {
+                                if ( parse( gag._config.groups[gi], href, this ) ) {
+                                    break;
+                                }
                             }
                         }
                     }
@@ -87,11 +89,12 @@ var Gag = function ( config )
         for ( var gi in groups ) {
             var css_name = "gr_" + groups[gi].name.toLowerCase().replace( " ", "-" );
 
-            var css_grad =
-                    "background:-webkit-gradient(linear, left top, left bottom, " +
-                    "color-stop(100%, " + groups[gi].color_bottom + "), " +
-                    "color-stop(0%, " + groups[gi].color_top + "))";
+//            var css_grad =
+//                    "background:-webkit-gradient(linear, left top, left bottom, " +
+//                    "color-stop(100%, " + groups[gi].color_bottom + "), " +
+//                    "color-stop(0%, " + groups[gi].color_top + "))";
 
+            var css_grad = "background-color: " + groups[gi].color_top;
             var new_style = "<style>." + css_name + " {" + css_grad + " !important; box-shadow : 0 0 10px #a16f0e !important;}</style>";
 
             $( new_style ).appendTo( "head" );

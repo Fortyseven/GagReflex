@@ -64,18 +64,23 @@ var GagConfig = function ( on_loading_complete_callback )
 /**
  *
  * @param obj
- * @returns {{name: (*|string|compiled.name|Function|name|string), domains: (*|Array), color_top: (*|string|compiled.color_top|string), color_bottom: (*|string|compiled.color_bottom|string), readonly: (*|boolean|P.readonly), enabled: (*|boolean|enabled)}}
+ * @returns {{name: (*|string|compiled.name|Function|name|string), domains: (*|Array), color_top: (*|string|compiled.color_top|string), color_bottom: (*|string|compiled.color_bottom|string), readonly: (*|boolean|P.readonly), is_enabled: (*|boolean|is_enabled)}}
  */
 GagConfig.prototype.createGroupObject = function ( obj )
 {
     obj = obj || {};
+
+    if (obj.is_enabled === undefined) {
+        obj.is_enabled == 1;
+    }
+
     return {
         name: obj.name || "",                        // Name of the group
         domains: obj.domains || [],                  // Array of hostnames to match this filter
         color_top: obj.color_top || "#ffffff",       // Gradient will fade from this
-        color_bottom: obj.color_bottom || "#ffffff", // Gradient will fade to this
+        //color_bottom: obj.color_bottom || "#ffffff", // Gradient will fade to this
         readonly: obj.readonly || false,              // Read only (implies built-in, immutable group)
-        enabled: obj.enabled || true                 // Turn this group on/off
+        is_enabled: obj.is_enabled
     };
 };
 
@@ -107,33 +112,6 @@ GagConfig.prototype.mergeBaseAndUser = function ( group_a, group_b )
 {
     var merged = [];
 
-//    for ( var a in group_a )
-//    {
-//        var group_a_name = group_a[ a ].name.trim().toLowerCase();
-//        var readonly = group_a[a].readonly;
-//        var foo = this.cloneGroup( group_a[a] );
-//
-//        // Look for an existing group name in group_b
-//        for ( var b in group_b ) {
-//            var group_b_name = group_b[ b ].name.trim().toLowerCase();
-//
-//            if ( group_a_name == group_b_name ) {
-//                // overwrite properties that exist in A with those from B, if they exist
-//                for ( var field in group_b[b] ) {
-//                    if ( readonly && field == "domains" ) {
-//                        continue;
-//                    }
-//
-//                    if ( foo.hasOwnProperty( field ) ) {
-//                        foo[field] = group_b[b][field];
-//                    }
-//                }
-//            }
-//        }
-//
-//        merged.push( foo );
-//    }
-
     for ( var a in group_a ) {
         merged.push( group_a[a] );
     }
@@ -148,9 +126,9 @@ GagConfig.prototype.mergeBaseAndUser = function ( group_a, group_b )
 
                     // skip protected fields, preserving the existing group_a version
 //                    if ( merged[m].readonly ) {
-                        if ( field == "name" || field == "domains" ) {
-                            continue;
-                        }
+                            if ( field == "name" || field == "domains" ) {
+                                continue;
+                            }
 //                    }
 
                     if ( foo.hasOwnProperty( field ) ) {
@@ -182,17 +160,17 @@ GagConfig.prototype.getBuiltInGroups = function ()
                                         name:         "News Satire",
                                         domains:      this.SATIRE_DOMAINS,
                                         color_top:    "#ffdd88",
-                                        color_bottom: "#ffffee",
-                                        readonly:     true,
-                                        enabled:      true
+//                                        color_bottom: "#ffffee",
+                                        readonly:     1,
+                                        is_enabled:   1
                                     } ),
             this.createGroupObject( {
                                         name:         "Questionable Sources",
                                         domains:      this.QUESTIONABLE_DOMAINS,
                                         color_top:    "#c0c76a",
-                                        color_bottom: "#ffffee",
-                                        readonly:     true,
-                                        enabled:      true
+//                                        color_bottom: "#ffffee",
+                                        readonly:     1,
+                                        is_enabled:   1
                                     } )
         ]
     };
@@ -220,8 +198,6 @@ GagConfig.prototype.loadConfig = function ( on_ready_callback )
         {
             // So, we have to wait through the callback, and there might not even
             // be anything. Geesh.
-
-
 
             if ( user_conf ) {
                 try {

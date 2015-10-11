@@ -8,11 +8,17 @@ var Popup = function()
     var _edit_form = null;
     var _self = this;
 
+    /**
+     *
+     */
     this.onEditCancel = function ()
     {
         _edit_element.hide();
     };
 
+    /**
+     *
+     */
     this.onEditDeleteGroup = function()
     {
         if (confirm("Really delete this group?")) {
@@ -24,6 +30,9 @@ var Popup = function()
         }
     }
 
+    /**
+     *
+     */
     this.resetEditForm = function ()
     {
         _edit_form.data( 'group_id', null );
@@ -32,11 +41,19 @@ var Popup = function()
         $( "#btnEditDelete", _edit_form ).show();
     };
 
+    /**
+     *
+     */
     this.saveConfig = function()
     {
         chrome.extension.sendMessage( { method: GagConfig.MSG_POPUP_SAVED, config: JSON.stringify( this._config_data ) } );
     };
 
+    /**
+     *
+     * @param new_group
+     * @param is_new
+     */
     this.validateGroup = function ( new_group, is_new )
     {
         if ( new_group.name.trim().length < 1 ) {
@@ -54,17 +71,18 @@ var Popup = function()
         }
     };
 
+    /**
+     *
+     */
     this.onEditSaveGroup = function()
     {
         var id = _edit_form.data( 'group_id' );
-
-        console.log( 'Saving id ', id );
 
         var new_group = _gagconfig.createGroupObject( this._config_data.groups[id] || null );
 
         new_group.name = $( ".group-name", _edit_form ).val();
         new_group.color_top = $( ".group-color-top", _edit_form ).val();
-        new_group.color_bottom = $( ".group-color-bottom", _edit_form ).val();
+        //new_group.color_bottom = $( ".group-color-bottom", _edit_form ).val();
 
         var doms = new_group.domains = $( ".group-domains", _edit_form ).val().split( ',' );
         new_group.domains = [];
@@ -72,7 +90,7 @@ var Popup = function()
             doms[i] = doms[i].trim();
             if (doms[i].length > 0) new_group.domains.push(doms[i]);
         }
-        new_group.enabled = $( ".group-enabled", _edit_form )[0].checked;
+        new_group.is_enabled = $( ".group-enabled", _edit_form )[0].checked ? 1 : 0;
 
         try {
             this.validateGroup(new_group, id == null);
@@ -89,13 +107,11 @@ var Popup = function()
             this.resetEditForm();
 
             ///// debug
-            console.log( "saved config: ", this._config_data );
+            //console.log( "saved config: ", this._config_data );
 
-            for ( var i in this._config_data.groups ) {
-                console.table( [this._config_data.groups[i]] );
-            }
-
-            console.log('-----------------');
+//            for ( var i in this._config_data.groups ) {
+//                console.table( [this._config_data.groups[i]] );
+//            }
 
             this.saveConfig();
 
@@ -107,6 +123,7 @@ var Popup = function()
             alert("Could not save: " + e);
         }
     }
+
     /*********************************************************************
      * Bind inputs on popup.html
      * (We can't do this from inside the HTML file because of Chrome security.)
@@ -149,10 +166,11 @@ var Popup = function()
             var compiled = $(MicroMustache.render( this.TEMPLATE_GROUP_FORM, {
                 id:           i,
                 name:         this._config_data.groups[i].name,
-                enabled:      this._config_data.groups[i].enabled,
-                grad_css: "background:-webkit-gradient(linear, left top, left bottom, " +
-                          "color-stop(100%, " + this._config_data.groups[i].color_bottom + "), " +
-                          "color-stop(0%, " + this._config_data.groups[i].color_top + "))",
+                is_enabled:      this._config_data.groups[i].is_enabled,
+//                grad_css: "background:-webkit-gradient(linear, left top, left bottom, " +
+//                          "color-stop(100%, " + this._config_data.groups[i].color_bottom + "), " +
+//                          "color-stop(0%, " + this._config_data.groups[i].color_top + "))",
+                grad_css: "background-color: " + this._config_data.groups[i].color_top,
 //                color_top:    this._config_data.groups[i].color_top,
 //                color_bottom: this._config_data.groups[i].color_bottom,
                 count:        this._config_data.groups[i].domains.length,
@@ -182,24 +200,23 @@ var Popup = function()
 
         this.resetEditForm();
 
-        if (!group || group.readonly) {
+        if ( !group || group.readonly ) {
             $( "#btnEditDelete", _edit_form ).hide();
         }
-
         var new_group = _gagconfig.createGroupObject( group );
 
-        console.info("Editing ", id, new_group.name);
-        _edit_form.data("group_id", id);
+        _edit_form.data( "group_id", id );
 
         $( ".group-name", _edit_form ).val( new_group.name );
-        $( ".group-domains", _edit_form ).val( new_group.domains.join(', ') );
+        $( ".group-domains", _edit_form ).val( new_group.domains.join( ', ' ) );
         $( ".group-color-top", _edit_form ).val( new_group.color_top );
-        $( ".group-color-bottom", _edit_form ).val( new_group.color_bottom );
-        $( ".group-enabled", _edit_form ).attr( "checked", new_group.enabled ? "checked" : null );
+        //$( ".group-color-bottom", _edit_form ).val( new_group.color_bottom );
 
-        if (new_group.readonly) {
-            $( ".group-domains", _edit_form ).prop("disabled", true ).addClass("group-disabled");
-            $( ".group-name", _edit_form ).prop("disabled", true ).addClass("group-disabled");
+        $( ".group-enabled", _edit_form ).attr( "checked", new_group.is_enabled ? "checked" : null );
+
+        if ( new_group.readonly == 1 ) {
+            $( ".group-domains", _edit_form ).prop( "disabled", true ).addClass( "group-disabled" );
+            $( ".group-name", _edit_form ).prop( "disabled", true ).addClass( "group-disabled" );
         }
     };
 
@@ -212,11 +229,11 @@ var Popup = function()
         // We'll pass it the updated config information so it can save it and put it into action
 
         $( window ).unload( function () {
-            chrome.extension.sendMessage({ method: GagConfig.MSG_POPUP_CLOSED, config: _config_data });
+            chrome.extension.sendMessage( { method: GagConfig.MSG_POPUP_CLOSED, config: _config_data } );
         });
 
-        _edit_element = $("#EditBox");
-        _edit_form = $(".dialog", _edit_element);
+        _edit_element = $( "#EditBox" );
+        _edit_form = $( ".dialog", _edit_element );
         _edit_element.hide();
 
         _gagconfig = new GagConfig(function(config) {
@@ -231,6 +248,7 @@ var Popup = function()
     init();
 }
 
+/**************************************************************************/
 Popup.prototype.EditGroup = function ( id )
 {
     if ( id === null ) {

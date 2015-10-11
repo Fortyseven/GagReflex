@@ -31,20 +31,20 @@
             <div class="dialog">
                 <div class="top-row">
                     <div class="name">
-                        <label>Name</label><input type="text" class="group-name" value="{{name}}"/>
+                        <label>Name</label><input type="text" class="group-name" value="" placeholder="Enter a name for this group."/>
                     </div>
                     <div class="colors">
-                        <label>Top<input class="group-color-top" type="color" value="#FFFFFF"/></label>
-                        <label>Bottom<input class="group-color-bottom" type="color" value="#000000"/></label>
+                        <label>Color<input class="group-color-top" type="color" value="#FFFFFF"/></label>
+                        <!--<label>Bottom<input class="group-color-bottom" type="color" value="#000000"/></label>-->
                     </div>
                 </div>
 
                 <div class="clearfix">
-                    <label>Domains <textarea rows=6 class="group-domains">{{csv_domains}}</textarea></label>
+                    <label>Domains <textarea rows=6 class="group-domains" placeholder="Type domain names separated by a comma. (e.g. potato.com, example.com, google.com, etc..."></textarea></label>
                 </div>
 
                 <div class="options">
-                    <label>Enabled <input class="group-enabled" type="checkbox" checked="{{opt-enabled}}"/></label>
+                    <label>Enabled <input class="group-enabled" type="checkbox" checked/></label>
                 </div>
 
                 <div class="bottom-row">
