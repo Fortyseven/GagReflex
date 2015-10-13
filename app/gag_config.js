@@ -53,7 +53,8 @@ var GagConfig = function ( on_loading_complete_callback )
         "responsibletechnology.org", "secretsofthefed.com", "thecommonsenseshow.com", "thecontroversialfiles.net",
         "thelastgreatstand.com", "therightplanet.com", "theuspatriot.com", "topinfopost.com", "truthandaction.org",
         "truthbroadcastnetwork.com", "usahitman.com", "veteranstoday.com", "westernjournalism.com", "crazed.com",
-        "whydontyoutrythis.com", "healthyandnaturallife.com", "dailycaller.com", "consciouslyenlightened.com"
+        "whydontyoutrythis.com", "healthyandnaturallife.com", "dailycaller.com", "consciouslyenlightened.com",
+        "mrconservative.com"
     ];
 
     //this._config = {};
