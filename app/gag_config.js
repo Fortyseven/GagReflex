@@ -18,7 +18,7 @@ var GagConfig = function ( on_loading_complete_callback )
         "theracketreport.com", "weeklyworldnews.com", "worldnewsdailyreport.com", "scrappleface.com", "bongonews.com",
         "thepeoplescube.com", "utm_hp_ref=satire", "newswatch28.com", "thenewsnerd.com", "dailymediabuzz.com",
         "demyx.com", "americannews.com", "newslo.com", "shareonfb.com", "chronicle.su", "duffelblog.com",
-        "duhprogressive.com", "stubhillnews.com", "nbc.com.co", "starwipe.com"
+        "duhprogressive.com", "stubhillnews.com", "nbc.com.co", "starwipe.com", "liberaldarkness.com"
     ];
 
     /**
