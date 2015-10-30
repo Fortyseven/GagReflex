@@ -18,7 +18,8 @@ var GagConfig = function ( on_loading_complete_callback )
         "theracketreport.com", "weeklyworldnews.com", "worldnewsdailyreport.com", "scrappleface.com", "bongonews.com",
         "thepeoplescube.com", "utm_hp_ref=satire", "newswatch28.com", "thenewsnerd.com", "dailymediabuzz.com",
         "demyx.com", "americannews.com", "newslo.com", "shareonfb.com", "chronicle.su", "duffelblog.com",
-        "duhprogressive.com", "stubhillnews.com", "nbc.com.co", "starwipe.com", "liberaldarkness.com"
+        "duhprogressive.com", "stubhillnews.com", "nbc.com.co", "starwipe.com", "liberaldarkness.com", 
+        "politicalgarbagechute.com"
     ];
 
     /**
@@ -54,7 +55,7 @@ var GagConfig = function ( on_loading_complete_callback )
         "thelastgreatstand.com", "therightplanet.com", "theuspatriot.com", "topinfopost.com", "truthandaction.org",
         "truthbroadcastnetwork.com", "usahitman.com", "veteranstoday.com", "westernjournalism.com", "crazed.com",
         "whydontyoutrythis.com", "healthyandnaturallife.com", "dailycaller.com", "consciouslyenlightened.com",
-        "mrconservative.com"
+        "mrconservative.com", "forbes.com"
     ];
 
     //this._config = {};
