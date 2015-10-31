@@ -24,8 +24,7 @@ var Gag = function ( config )
         $( gag.ARTICLE_CLASS ).each(
                 function ()
                 {
-                    var href = $( gag.ARTICLE_LINK_SELECTOR, this )
-                                       .attr( "onmouseover" ) || null;
+                    var href = $( gag.ARTICLE_LINK_SELECTOR, this ).attr( "onmouseover" ) || null;
 
                     if ( href != null ) {
                         for ( var gi in gag._config.groups ) {
@@ -58,7 +57,6 @@ var Gag = function ( config )
                 function ( element, index, array )
                 {
                     // Does the domain match somewhere in the URL? // FIXME
-                    //console.error( "Does this work?", element );
                     if ( source_url.indexOf( element ) > -1 ) {
 
                         // Brand it with the class belonging to the group
@@ -82,23 +80,15 @@ var Gag = function ( config )
             throw "Invalid or undefined gag reflex config";
         }
 
-        //this.unbindAllCSSRules();
-
         var groups = config.groups;
 
         for ( var gi in groups ) {
             var css_name = "gr_" + groups[gi].name.toLowerCase().replace( " ", "-" );
 
-//            var css_grad =
-//                    "background:-webkit-gradient(linear, left top, left bottom, " +
-//                    "color-stop(100%, " + groups[gi].color_bottom + "), " +
-//                    "color-stop(0%, " + groups[gi].color_top + "))";
-
             var css_grad = "background-color: " + groups[gi].color_top;
             var new_style = "<style>." + css_name + " {" + css_grad + " !important; box-shadow : 0 0 10px #a16f0e !important;}</style>";
 
             $( new_style ).appendTo( "head" );
-            //console.warn( css_name, new_style );
 
             groups[gi].css_name = css_name;
 
