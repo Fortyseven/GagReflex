@@ -67,7 +67,8 @@ var GagConfig = function ( on_loading_complete_callback )
         "thegoodsurvivalist.com", "anonhq.com", "indian-skeptic.org", "indiansceptic.in",
         "philosophers-stone.co.uk", "kendoc911.files.wordpress.com", "freerepublic.com", "sott.net",
         "wattsupwiththat.com", "subvertednation.net", "jewishcrimenetworkdid911.blogspot.com.au",
-        "seeker401.wordpress.com", "revelation13.net", "gotnews.com"
+        "seeker401.wordpress.com", "revelation13.net", "gotnews.com", "reason.com", "thegatewaypundit.com",
+        "tvoinews.com", "rightwingwatch.org"
 
         // If Drudge Report actually hosted its own original content, rest assured, a link to the site would go here.
     ];
