@@ -18,7 +18,7 @@ var GagConfig = function ( on_loading_complete_callback )
         "theracketreport.com", "weeklyworldnews.com", "worldnewsdailyreport.com", "scrappleface.com", "bongonews.com",
         "thepeoplescube.com", "utm_hp_ref=satire", "newswatch28.com", "thenewsnerd.com", "dailymediabuzz.com",
         "demyx.com", "americannews.com", "newslo.com", "shareonfb.com", "chronicle.su", "duffelblog.com",
-        "duhprogressive.com", "stubhillnews.com", "nbc.com.co", "starwipe.com", "liberaldarkness.com", 
+        "duhprogressive.com", "stubhillnews.com", "nbc.com.co", "starwipe.com", "liberaldarkness.com",
         "politicalgarbagechute.com"
     ];
 
@@ -55,7 +55,12 @@ var GagConfig = function ( on_loading_complete_callback )
         "thelastgreatstand.com", "therightplanet.com", "theuspatriot.com", "topinfopost.com", "truthandaction.org",
         "truthbroadcastnetwork.com", "usahitman.com", "veteranstoday.com", "westernjournalism.com", "crazed.com",
         "whydontyoutrythis.com", "healthyandnaturallife.com", "dailycaller.com", "consciouslyenlightened.com",
-        "mrconservative.com", "forbes.com"
+        "mrconservative.com", "forbes.com", "thesleuthjournal.com", "investmentresearchdynamics.com",
+        "tomatobubble.com", "bunkerville.wordpress.com", "theunhivedmind.com", "theantimedia.org",
+        "truthcdm.com", "mycatbirdseat.com", "rt.com", "truth-out.org", "whatsupic.com", "whatsupic.com",
+        "911blogger.com", "zerohedge.com", "thefederalist.com", "blacklistednews.com",
+        "thefederalist-gary.blogspot.com", "rinf.com", "vdare.com", "christopherketcham.com",
+        "iceagenow.info","hiduth.com", "whowhatwhy.org", "zerocensorship.com", "inquisitr.com"
     ];
 
     //this._config = {};
