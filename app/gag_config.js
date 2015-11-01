@@ -64,7 +64,10 @@ var GagConfig = function ( on_loading_complete_callback )
         "topsecretwriters.com", "alternativenewsproject.org", "unreddit.com", "independenceday.pro",
         "blog.world-mysteries.com", "tradyouth.org", "collectivelyconscious.net", "buzzfeed.com",
         "americablog.com", "republicreport.org", "opednews.com", "therightscoop.com", "nationaltribune.com",
-        "thegoodsurvivalist.com", "anonhq.com"
+        "thegoodsurvivalist.com", "anonhq.com", "indian-skeptic.org", "indiansceptic.in",
+        "philosophers-stone.co.uk", "kendoc911.files.wordpress.com", "freerepublic.com", "sott.net",
+        "wattsupwiththat.com", "subvertednation.net", "jewishcrimenetworkdid911.blogspot.com.au",
+        "seeker401.wordpress.com", "revelation13.net", "gotnews.com"
 
         // If Drudge Report actually hosted its own original content, rest assured, a link to the site would go here.
     ];
