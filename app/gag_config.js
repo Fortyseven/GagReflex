@@ -60,7 +60,10 @@ var GagConfig = function ( on_loading_complete_callback )
         "truthcdm.com", "mycatbirdseat.com", "rt.com", "truth-out.org", "whatsupic.com", "whatsupic.com",
         "911blogger.com", "zerohedge.com", "thefederalist.com", "blacklistednews.com",
         "thefederalist-gary.blogspot.com", "rinf.com", "vdare.com", "christopherketcham.com",
-        "iceagenow.info","hiduth.com", "whowhatwhy.org", "zerocensorship.com", "inquisitr.com"
+        "iceagenow.info","hiduth.com", "whowhatwhy.org", "zerocensorship.com", "inquisitr.com",
+        "topsecretwriters.com", "alternativenewsproject.org", "unreddit.com", "independenceday.pro",
+        "blog.world-mysteries.com", "tradyouth.org", "collectivelyconscious.net", "buzzfeed.com",
+        "americablog.com", "republicreport.org", "opednews.com", "therightscoop.com", "nationaltribune.com"
     ];
 
     //this._config = {};
