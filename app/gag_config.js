@@ -60,10 +60,13 @@ var GagConfig = function ( on_loading_complete_callback )
         "truthcdm.com", "mycatbirdseat.com", "rt.com", "truth-out.org", "whatsupic.com", "whatsupic.com",
         "911blogger.com", "zerohedge.com", "thefederalist.com", "blacklistednews.com",
         "thefederalist-gary.blogspot.com", "rinf.com", "vdare.com", "christopherketcham.com",
-        "iceagenow.info","hiduth.com", "whowhatwhy.org", "zerocensorship.com", "inquisitr.com",
+        "iceagenow.info", "hiduth.com", "whowhatwhy.org", "zerocensorship.com", "inquisitr.com",
         "topsecretwriters.com", "alternativenewsproject.org", "unreddit.com", "independenceday.pro",
         "blog.world-mysteries.com", "tradyouth.org", "collectivelyconscious.net", "buzzfeed.com",
-        "americablog.com", "republicreport.org", "opednews.com", "therightscoop.com", "nationaltribune.com"
+        "americablog.com", "republicreport.org", "opednews.com", "therightscoop.com", "nationaltribune.com",
+        "thegoodsurvivalist.com", "anonhq.com"
+
+        // If Drudge Report actually hosted its own original content, rest assured, a link to the site would go here.
     ];
 
     //this._config = {};
@@ -122,21 +125,22 @@ GagConfig.prototype.mergeBaseAndUser = function ( group_a, group_b )
     for ( var b in group_b ) {
         var have_found_existing = false;
         for ( var m in merged ) {
+
             if ( merged[m].name.trim().toLowerCase() == group_b[b].name.trim().toLowerCase() ) {
                 // existing item, merge them
                 var foo = this.createGroupObject( merged[m] );
+
                 for ( var field in merged[m] ) {
 
                     // skip protected fields, preserving the existing group_a version
-//                    if ( merged[m].readonly ) {
-                            if ( field == "name" || field == "domains" ) {
-                                continue;
-                            }
-//                    }
+                    if ( field == "name" || field == "domains" ) {
+                        continue;
+                    }
 
                     if ( foo.hasOwnProperty( field ) ) {
                         foo[field] = group_b[b][field];
                     }
+
                 }
                 have_found_existing = true;
                 merged[m] = foo;
@@ -156,25 +160,25 @@ GagConfig.prototype.mergeBaseAndUser = function ( group_a, group_b )
  *
  * @return {{groups: *[]}}
  */
-GagConfig.prototype.getBuiltInGroups = function ()
+GagConfig.prototype.getDefaultConfig = function ()
 {
     return {
         groups: [
             this.createGroupObject( {
-                                        name:         "News Satire",
-                                        domains:      this.SATIRE_DOMAINS,
-                                        color_top:    "#ffdd88",
+                                        name:       "News Satire",
+                                        domains:    this.SATIRE_DOMAINS,
+                                        color_top:  "#ffdd88",
 //                                        color_bottom: "#ffffee",
-                                        readonly:     1,
-                                        is_enabled:   1
+                                        readonly:   1,
+                                        is_enabled: 1
                                     } ),
             this.createGroupObject( {
-                                        name:         "Questionable Sources",
-                                        domains:      this.QUESTIONABLE_DOMAINS,
-                                        color_top:    "#c0c76a",
+                                        name:       "Questionable Sources",
+                                        domains:    this.QUESTIONABLE_DOMAINS,
+                                        color_top:  "#c0c76a",
 //                                        color_bottom: "#ffffee",
-                                        readonly:     1,
-                                        is_enabled:   1
+                                        readonly:   1,
+                                        is_enabled: 1
                                     } )
         ]
     };
@@ -188,7 +192,7 @@ GagConfig.prototype.getBuiltInGroups = function ()
  */
 GagConfig.prototype.loadConfig = function ( on_ready_callback )
 {
-    var config = this.getBuiltInGroups();
+    var config = this.getDefaultConfig();
 
     //chrome.storage.sync.get
     //var user_conf = localStorage.getItem( "config" );
@@ -200,20 +204,20 @@ GagConfig.prototype.loadConfig = function ( on_ready_callback )
     // me that shit, bro!"
 
     chrome.runtime.sendMessage( { method: GagConfig.MSG_GET_USER_CONFIG },
-        function ( user_conf )
-        {
-            // So, we have to wait through the callback, and there might not even
-            // be anything. Geesh.
+                                function ( user_conf )
+                                {
+                                    // So, we have to wait through the callback, and there might not even
+                                    // be anything. Geesh.
 
-            if ( user_conf ) {
-                try {
-                    var parsed_user_shit = JSON.parse( user_conf );
-                    config.groups = self.mergeBaseAndUser( config.groups, parsed_user_shit.groups );
-                }
-                catch(e) {
-                    console.warn("Corrupted config or non-existent. Ignoring.");// (" + e + ")");
-                }
-            }
+                                    if ( user_conf ) {
+                                        try {
+                                            var parsed_user_shit = JSON.parse( user_conf );
+                                            config.groups = self.mergeBaseAndUser( config.groups, parsed_user_shit.groups );
+                                        }
+                                        catch ( e ) {
+                                            console.warn( "Corrupted config or non-existent. Ignoring." );// (" + e + ")");
+                                        }
+                                    }
 
 //            var arr = [];
 //            for ( var i in config.groups ) {
@@ -222,12 +226,12 @@ GagConfig.prototype.loadConfig = function ( on_ready_callback )
 //            }
 //            console.table( arr );
 
-            // this callback is a throwback to when I was using chrome cloud
-            // storage; keeping this here in case I move back to that
+                                    // this callback is a throwback to when I was using chrome cloud
+                                    // storage; keeping this here in case I move back to that
 
-            var foo = on_ready_callback.bind( self );
-            foo( config ); //FIXME: m0ar el3gan7 plz
-        }
+                                    var foo = on_ready_callback.bind( self );
+                                    foo( config ); //FIXME: m0ar el3gan7 plz
+                                }
     );
 };
 
