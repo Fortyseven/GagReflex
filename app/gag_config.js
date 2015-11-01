@@ -171,7 +171,6 @@ GagConfig.prototype.getDefaultConfig = function ()
                                         name:       "News Satire",
                                         domains:    this.SATIRE_DOMAINS,
                                         color_top:  "#ffdd88",
-//                                        color_bottom: "#ffffee",
                                         readonly:   1,
                                         is_enabled: 1
                                     } ),
@@ -179,7 +178,6 @@ GagConfig.prototype.getDefaultConfig = function ()
                                         name:       "Questionable Sources",
                                         domains:    this.QUESTIONABLE_DOMAINS,
                                         color_top:  "#c0c76a",
-//                                        color_bottom: "#ffffee",
                                         readonly:   1,
                                         is_enabled: 1
                                     } )
