@@ -33,9 +33,12 @@ var GagFacebook = function ( config )
         var href_match = link.href.match( /\?u=(.*)&/ );
         if ( href_match[1] ) {
             var url = decodeURIComponent( href_match[1] );
-            var host = url.match( /http[s?]:\/\/(.*)\// );
-            if (host) return host[1];
+            var host = url.match( /^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/ );
+            if ( host ) {
+                return host[3];
+            }
         }
+        console.warn( "Could not deshim ", link );
         return null;
     }
 
