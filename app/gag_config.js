@@ -111,14 +111,14 @@ GagConfig.prototype.createGroupObject = function ( group_obj )
 };
 
 /**
- * Merges two config objects. This is used to overwrite the built-in config with
- * user modified settings.
+ * Merges two config objects. This is used to overwrite the built-in groups with
+ * modified user and built-in groups.
  *
  * @param group_a
  * @param group_b
  * @returns {Array}
  */
-GagConfig.prototype.mergeBaseAndUser = function ( group_a, group_b )
+GagConfig.prototype.mergeBaseAndUserGroups = function ( group_a, group_b )
 {
     var merged = [];
 
@@ -160,6 +160,28 @@ GagConfig.prototype.mergeBaseAndUser = function ( group_a, group_b )
 };
 
 /**
+ * Merges two JS objects. This is used to overwrite the built-in config with
+ * user modified settings.
+ * @param base_obj
+ * @param override_obj
+ * @return {{}}
+ */
+GagConfig.prototype.mergeBaseAndUserObjects = function ( base_obj, override_obj )
+{
+    var merged = {};
+
+    for ( var base in base_obj ) {
+        merged[base] = base_obj[base];
+    }
+
+    for ( var over in override_obj ) {
+        merged[over] = override_obj[over];
+    }
+
+    return merged;
+};
+
+/**
  * Returns a clean install default configuration object
  *
  * @return {{groups: *[]}}
@@ -167,7 +189,11 @@ GagConfig.prototype.mergeBaseAndUser = function ( group_a, group_b )
 GagConfig.prototype.getDefaultConfig = function ()
 {
     return {
-        groups: [
+        options: {
+            enabledOnReddit:   true,
+            enabledOnFacebook: true
+        },
+        groups:  [
             this.createGroupObject( {
                                         name:       "News Satire",
                                         domains:    this.SATIRE_DOMAINS,
@@ -214,19 +240,13 @@ GagConfig.prototype.loadConfig = function ( on_ready_callback )
                                     if ( user_conf ) {
                                         try {
                                             var parsed_user_shit = JSON.parse( user_conf );
-                                            config.groups = self.mergeBaseAndUser( config.groups, parsed_user_shit.groups );
+                                            config.options = self.mergeBaseAndUserObjects( config.options, parsed_user_shit.options );
+                                            config.groups = self.mergeBaseAndUserGroups( config.groups, parsed_user_shit.groups );
                                         }
                                         catch ( e ) {
                                             console.warn( "Corrupted config or non-existent. Ignoring." );// (" + e + ")");
                                         }
                                     }
-
-//            var arr = [];
-//            for ( var i in config.groups ) {
-//                config.groups[i] = self.createGroupObject( config.groups[i] );
-//                arr.push( config.groups[i] );
-//            }
-//            console.table( arr );
 
                                     // this callback is a throwback to when I was using chrome cloud
                                     // storage; keeping this here in case I move back to that

@@ -17,7 +17,7 @@ var GagReddit = function ( config )
     {
         //setTimeout( this.runHighlighting.bind( this ), this.REFRESH_DELAY );
         this.runHighlighting();
-    }
+    };
 
     /***************************************
      * Callback to do highlighting on page
@@ -29,8 +29,7 @@ var GagReddit = function ( config )
                 function ()
                 {
                     var article_element = this;
-                    $(gag.ARTICLE_LINK_SELECTOR, this ).each(function(a,el,c){
-                        //console.error(this.host);
+                    $(gag.ARTICLE_LINK_SELECTOR, this ).each(function(){
                         if ( this.host ) {
                             for ( var gi in gag._config.groups ) {
                                 if ( gag._config.groups[gi].is_enabled ) {
@@ -60,7 +59,7 @@ var GagReddit = function ( config )
         var has_found_match = false;
 
         group_def.domains.forEach(
-                function ( element, index, array )
+                function ( element )
                 {
                     // Does the domain match somewhere in the URL?
                     if ( source_url == element ||

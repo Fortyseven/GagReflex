@@ -31,7 +31,7 @@ var Popup = function()
 
             this.onEditCancel();
         }
-    }
+    };
 
     /**
      * Restore edit page to sane defaults.
@@ -116,13 +116,6 @@ var Popup = function()
 
             this.resetEditForm();
 
-            ///// debug
-            //console.log( "saved config: ", this._config_data );
-
-//            for ( var i in this._config_data.groups ) {
-//                console.table( [this._config_data.groups[i]] );
-//            }
-
             this.saveConfig();
 
             _self.refreshContents();
@@ -132,7 +125,7 @@ var Popup = function()
         catch(e) {
             alert("Could not save: " + e);
         }
-    }
+    };
 
     /**
      * Bind inputs on popup.html
@@ -164,6 +157,16 @@ var Popup = function()
 
         $(".btn-new button" ).click(function(){
             _self.EditGroup(null);
+        });
+
+        $("#OptionRenderFacebook" ).click(function(){
+            _self._config_data.options.enabledOnFacebook = $( this ).is( ":checked" );
+            _self.saveConfig();
+        });
+
+        $("#OptionRenderReddit" ).click(function(){
+            _self._config_data.options.enabledOnReddit = $( this ).is( ":checked" );
+            _self.saveConfig();
         });
     }
 
@@ -210,8 +213,13 @@ var Popup = function()
             $content.append( compiled );
         }
 
+        // Fill options
+
+        $( "#OptionRenderFacebook" ).prop( "checked", _self._config_data.options.enabledOnFacebook );
+        $( "#OptionRenderReddit" ).prop( "checked", _self._config_data.options.enabledOnReddit );
+
         componentHandler.upgradeDom();
-    }
+    };
 
     /*********************************************************************
      *
@@ -229,7 +237,7 @@ var Popup = function()
         $( ".group-name", _edit_form ).val( new_group.name );
         $( ".group-domains", _edit_form ).val( new_group.domains.join( ', ' ) );
         $( ".group-color-top", _edit_form ).val( new_group.color_top );
-        //$( ".group-color-bottom", _edit_form ).val( new_group.color_bottom );
+
         if (new_group.is_enabled == 1)
             $( ".group-enabled", _edit_form ).prop( "checked",  true);
         else
@@ -269,7 +277,7 @@ var Popup = function()
 
     // construct
     init();
-}
+};
 
 /**************************************************************************/
 Popup.prototype.EditGroup = function ( id )
@@ -282,7 +290,7 @@ Popup.prototype.EditGroup = function ( id )
         // Existing group
         this.populateEditForm( id, this._config_data.groups[id] );
     }
-}
+};
 
 
 /**************************************************************************/

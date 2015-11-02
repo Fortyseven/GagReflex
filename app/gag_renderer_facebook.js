@@ -6,9 +6,11 @@
  */
 var GagFacebook = function ( config )
 {
-    this.self = this;
+    //this.self = this;
 
-    this.ARTICLE_CLASS = "div[aria-label=\"Story\"]";
+    //this.ARTICLE_CLASS = "div[aria-label=\"Story\"] div._1dwg";
+    this.ARTICLE_CLASS = "div[role=\"article\"]";
+    //this.ARTICLE_CLASS = "div._5pcr";
     this.ARTICLE_LINK_SELECTOR = "a._6kt, a._52c6, div._6m6>a, userContent a";
 
     this.REFRESH_DELAY = 1000;
@@ -21,6 +23,22 @@ var GagFacebook = function ( config )
         this.runHighlighting();
     }
 
+    /**
+     *
+     * @param link
+     * @return {string}
+     */
+    function deShimFacebookLink( link )
+    {
+        var href_match = link.href.match( /\?u=(.*)&/ );
+        if ( href_match[1] ) {
+            var url = decodeURIComponent( href_match[1] );
+            var host = url.match( /http[s?]:\/\/(.*)\// );
+            if (host) return host[1];
+        }
+        return null;
+    }
+
     /***************************************
      * Callback to do highlighting on page
      */
@@ -31,11 +49,18 @@ var GagFacebook = function ( config )
                 function ()
                 {
                     var article = this;
-                    //var href = $( gag.ARTICLE_LINK_SELECTOR, this ).attr( "onmouseover" ) || null;
-                    //var href = $( gag.ARTICLE_LINK_SELECTOR, this ).attr( "onmouseover" ) || null;
-                    $( gag.ARTICLE_LINK_SELECTOR, this ).each(function(){
+
+                    $( gag.ARTICLE_LINK_SELECTOR, article ).each( function ()
+                    {
                         var href = this.host;
+
                         if ( href != null ) {
+                            if ( href.indexOf( "facebook.com" ) > -1 ) {
+                                href = deShimFacebookLink( this );
+                                if ( href == null ) {
+                                    return;
+                                }
+                            }
                             for ( var gi in gag._config.groups ) {
                                 if ( gag._config.groups[gi].is_enabled ) {
                                     if ( parse( gag._config.groups[gi], href, article ) ) {
@@ -45,7 +70,6 @@ var GagFacebook = function ( config )
                             }
                         }
                     });
-
                 }
         );
         setTimeout( this.runHighlighting.bind( this ), this.REFRESH_DELAY );
@@ -71,7 +95,8 @@ var GagFacebook = function ( config )
                     if ( source_url == element ||
                          source_url.endsWith( "." + element ) ) {
                         // Brand it with the class belonging to the group
-                        parent_element.classList.add( group_def.css_name );
+                        //parent_element.classList.add( group_def.css_name );
+                        $(parent_element).addClass( group_def.css_name );
                         has_found_match = true;
                         return true;
                     }

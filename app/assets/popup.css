@@ -13,12 +13,44 @@ label,
 textarea {
   font-family: "Roboto";
 }
+#Content,
+#OptionBox {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 input,
 textarea {
   background: white;
 }
+fieldset {
+  padding-top: 48px;
+  /*legend height(18px) + top value(15px) + bottom spacing(15px) */
+  position: relative;
+}
+legend {
+  height: 18px;
+  /* Default Height of non-styled legend element with default font-size of 16px as tested at time of this posting */
+  left: 15px;
+  /*margin:15px 0;*/
+  /* Margins initially trying to achieve */
+  position: absolute;
+  top: 15px;
+  /* replaces top margin-top:15px; */
+}
 .menu-icon {
   padding-left: 1rem;
+}
+.section-heading {
+  font-weight: bold;
+  padding-top: 1rem;
+  padding-left: 0.5rem;
+  color: darkgoldenrod;
+}
+.sub-section-heading {
+  font-weight: bold;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  color: dodgerblue;
 }
 /******************************/
 div.group-entry {
