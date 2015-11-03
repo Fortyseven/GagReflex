@@ -73,7 +73,7 @@ var GagConfig = function ( on_loading_complete_callback )
         "wattsupwiththat.com", "subvertednation.net", "jewishcrimenetworkdid911.blogspot.com.au",
         "seeker401.wordpress.com", "revelation13.net", "gotnews.com", "reason.com", "thegatewaypundit.com",
         "tvoinews.com", "rightwingwatch.org", "boilingfrogspost.com", "allnewspipeline.com", "greenlifes.net",
-        "therealnews.com", "bigamericannews.com"
+        "therealnews.com", "bigamericannews.com", "jewsnews.co.il", "foodbabe.com"
 
         // If Drudge Report actually hosted its own original content, rest assured, a link to the site would go here.
     ];
