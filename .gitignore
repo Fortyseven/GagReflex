@@ -1,4 +1,5 @@
 .idea
+*~
 bower_components/micromustache/.bower.json
 bower_components/micromustache/AUTHORS
 bower_components/micromustache/README.md
