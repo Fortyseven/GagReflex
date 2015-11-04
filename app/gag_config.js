@@ -21,9 +21,8 @@ var GagConfig = function ( on_loading_complete_callback )
         "duhprogressive.com", "stubhillnews.com", "nbc.com.co", "starwipe.com", "liberaldarkness.com",
         "politicalgarbagechute.com", "christwire.org", "civictribune.com", "creambmp.com", "dcgazette.com",
         "msnbc.website", "newsmutiny.com", "politicalears.com", "realnewsrightnow.com", "rilenews.com",
-        "witscience.org", "gomerblog.com", "nahadaily.com", "rockcitytimes.com"
-
-
+        "witscience.org", "gomerblog.com", "nahadaily.com", "rockcitytimes.com", "thedailymash.co.uk",
+        "thedime.ca"
     ];
 
     /**
