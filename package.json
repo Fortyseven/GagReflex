@@ -1,0 +1,32 @@
+{
+  "name": "GagReflex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "gulp": "^3.9.0"
+  },
+  "devDependencies": {
+    "del": "^2.1.0",
+    "event-stream": "^3.3.2",
+    "gulp-debug": "^2.1.2",
+    "gulp-less": "^3.0.5",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-minify-html": "^1.0.4",
+    "gulp-uglify": "^1.5.1",
+    "run-sequence": "^1.1.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fortyseven/GagReflex.git"
+  },
+  "author": "Fortyseven",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Fortyseven/GagReflex/issues"
+  },
+  "homepage": "https://github.com/Fortyseven/GagReflex"
+}
