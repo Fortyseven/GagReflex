@@ -17,12 +17,12 @@ var GagConfig = function ( on_loading_complete_callback )
         "huzlers.com", "thelapine.ca", "lightlybraisedturnip.com", "mediamass.net", "nationalreport.net",
         "theracketreport.com", "weeklyworldnews.com", "worldnewsdailyreport.com", "scrappleface.com", "bongonews.com",
         "thepeoplescube.com", /*"utm_hp_ref=satire",*/ "newswatch28.com", "thenewsnerd.com", "dailymediabuzz.com",
-        "demyx.com", "americannews.com", "newslo.com", "shareonfb.com", "chronicle.su", "duffelblog.com",
-        "duhprogressive.com", "stubhillnews.com", "nbc.com.co", "starwipe.com", "liberaldarkness.com",
-        "politicalgarbagechute.com", "christwire.org", "civictribune.com", "creambmp.com", "dcgazette.com",
-        "msnbc.website", "newsmutiny.com", "politicalears.com", "realnewsrightnow.com", "rilenews.com",
-        "witscience.org", "gomerblog.com", "nahadaily.com", "rockcitytimes.com", "thedailymash.co.uk",
-        "thedime.ca", "newswatch33.com", "cbsnews.com.co", "now8news.com", "syruptrap.ca"
+        "demyx.com", "newslo.com", "shareonfb.com", "chronicle.su", "duffelblog.com", "duhprogressive.com", 
+        "stubhillnews.com", "nbc.com.co", "starwipe.com", "liberaldarkness.com", "politicalgarbagechute.com", 
+        "christwire.org", "civictribune.com", "creambmp.com", "dcgazette.com", "msnbc.website", "newsmutiny.com", 
+        "politicalears.com", "realnewsrightnow.com", "rilenews.com", "witscience.org", "gomerblog.com", "nahadaily.com", 
+        "rockcitytimes.com", "thedailymash.co.uk", "thedime.ca", "newswatch33.com", "cbsnews.com.co", "now8news.com", 
+        "syruptrap.ca"
     ];
 
     /**
@@ -72,7 +72,8 @@ var GagConfig = function ( on_loading_complete_callback )
         "wattsupwiththat.com", "subvertednation.net", "jewishcrimenetworkdid911.blogspot.com.au",
         "seeker401.wordpress.com", "revelation13.net", "gotnews.com", "reason.com", "thegatewaypundit.com",
         "tvoinews.com", "rightwingwatch.org", "boilingfrogspost.com", "allnewspipeline.com", "greenlifes.net",
-        "therealnews.com", "bigamericannews.com", "jewsnews.co.il", "foodbabe.com", "donotlink.com"
+        "therealnews.com", "bigamericannews.com", "jewsnews.co.il", "foodbabe.com", "donotlink.com",
+        "americannews.com"
 
         // If Drudge Report actually hosted its own original content, rest assured, a link to the site would go here.
     ];
