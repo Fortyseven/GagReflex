@@ -65,7 +65,7 @@ var GagConfig = function ( on_loading_complete_callback )
         "thefederalist-gary.blogspot.com", "rinf.com", "vdare.com", "christopherketcham.com",
         "iceagenow.info", "hiduth.com", "whowhatwhy.org", "zerocensorship.com", "inquisitr.com",
         "topsecretwriters.com", "alternativenewsproject.org", "unreddit.com", "independenceday.pro",
-        "blog.world-mysteries.com", "tradyouth.org", "collectivelyconscious.net", "buzzfeed.com",
+        "blog.world-mysteries.com", "tradyouth.org", "collectivelyconscious.net",
         "americablog.com", "republicreport.org", "opednews.com", "therightscoop.com", "nationaltribune.com",
         "thegoodsurvivalist.com", "anonhq.com", "indian-skeptic.org", "indiansceptic.in",
         "philosophers-stone.co.uk", "kendoc911.files.wordpress.com", "freerepublic.com", "sott.net",
@@ -73,7 +73,8 @@ var GagConfig = function ( on_loading_complete_callback )
         "seeker401.wordpress.com", "revelation13.net", "gotnews.com", "reason.com", "thegatewaypundit.com",
         "tvoinews.com", "rightwingwatch.org", "boilingfrogspost.com", "allnewspipeline.com", "greenlifes.net",
         "therealnews.com", "bigamericannews.com", "jewsnews.co.il", "foodbabe.com", "donotlink.com",
-        "americannews.com", "healthiswealthofheart.com", "rightwingnews.com", "clashdaily.com"
+        "americannews.com", "healthiswealthofheart.com", "rightwingnews.com", "clashdaily.com", 
+        "ddsdtv.blogspot.com"
 
         // If Drudge Report actually hosted its own original content, rest assured, a link to the site would go here.
     ];
