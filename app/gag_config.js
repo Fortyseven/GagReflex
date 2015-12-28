@@ -73,8 +73,11 @@ var GagConfig = function ( on_loading_complete_callback )
         "seeker401.wordpress.com", "revelation13.net", "gotnews.com", "reason.com", "thegatewaypundit.com",
         "tvoinews.com", "rightwingwatch.org", "boilingfrogspost.com", "allnewspipeline.com", "greenlifes.net",
         "therealnews.com", "bigamericannews.com", "jewsnews.co.il", "foodbabe.com", "donotlink.com",
-        "americannews.com", "healthiswealthofheart.com", "rightwingnews.com", "clashdaily.com", 
-        "ddsdtv.blogspot.com"
+        "americannews.com", "healthiswealthofheart.com", "rightwingnews.com", "clashdaily.com",
+        "ddsdtv.blogspot.com", "rebeldietitian.us", "prevention.com", "mindbodygreen.com", "thespiritscience.net",
+        "enenews.com", "returnofkings.com", "rooshv.com", "fixedearth.com", "freerepublic.com", "angrywhitedude.com",
+        "eagleforum.org", "afa.net", "metapedia.org", "rexresearch.com", "whitehonor.com", "conservapedia.com",
+        "stormfront.org", "godvine.com", "patriotaction.net", "newsbusters.org", "greenmedinfo.com"
 
         // If Drudge Report actually hosted its own original content, rest assured, a link to the site would go here.
     ];
