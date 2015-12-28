@@ -208,7 +208,7 @@ GagConfig.prototype.getDefaultConfig = function ()
             this.createGroupObject( {
                                         name:       "Questionable Sources",
                                         domains:    this.QUESTIONABLE_DOMAINS,
-                                        color_top:  "#c0c76a",
+                                        color_top:  "#e39f9f",
                                         readonly:   1,
                                         is_enabled: 1
                                     } )

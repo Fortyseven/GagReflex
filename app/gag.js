@@ -24,7 +24,7 @@ var Gag = function ( config )
             var css_name = "gr_" + groups[gi].name.toLowerCase().replace( " ", "-" );
 
             var css_grad = "background-color: " + groups[gi].color_top;
-            var new_style = "<style>." + css_name + " {transition: background-color 0.75s;  " + css_grad + " !important; box-shadow : 0 0 10px #a16f0e !important;}</style>";
+            var new_style = "<style>." + css_name + " {transition: background-color 0.75s;  " + css_grad + " !important; box-shadow : 0 0 10px darkred !important;}</style>";
 
             $( new_style ).appendTo( "head" );
 
