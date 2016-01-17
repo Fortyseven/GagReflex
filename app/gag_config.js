@@ -22,7 +22,7 @@ var GagConfig = function ( on_loading_complete_callback )
         "christwire.org", "civictribune.com", "creambmp.com", "dcgazette.com", "msnbc.website", "newsmutiny.com", 
         "politicalears.com", "realnewsrightnow.com", "rilenews.com", "witscience.org", "gomerblog.com", "nahadaily.com", 
         "rockcitytimes.com", "thedailymash.co.uk", "thedime.ca", "newswatch33.com", "cbsnews.com.co", "now8news.com", 
-        "syruptrap.ca", "reportquickly.com"
+        "syruptrap.ca", "reportquickly.com", "news.bfnn.co.uk", "article107news.com"
     ];
 
     /**
@@ -77,7 +77,8 @@ var GagConfig = function ( on_loading_complete_callback )
         "ddsdtv.blogspot.com", "rebeldietitian.us", "prevention.com", "mindbodygreen.com", "thespiritscience.net",
         "enenews.com", "returnofkings.com", "rooshv.com", "fixedearth.com", "freerepublic.com", "angrywhitedude.com",
         "eagleforum.org", "afa.net", "metapedia.org", "rexresearch.com", "whitehonor.com", "conservapedia.com",
-        "stormfront.org", "godvine.com", "patriotaction.net", "newsbusters.org", "greenmedinfo.com"
+        "stormfront.org", "godvine.com", "patriotaction.net", "newsbusters.org", "greenmedinfo.com",
+        "conservativetribune.com"
 
         // If Drudge Report actually hosted its own original content, rest assured, a link to the site would go here.
     ];
