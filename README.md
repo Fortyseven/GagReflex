@@ -1,5 +1,3 @@
-<img src="http://i.imgur.com/kn9DbZX.png">
-
 # GagReflex
 
 Ever kick yourself for realizing too late that the amazing article you've commented on, or shared with your friends, was actually... a joke? Tired of accidentally sharing an 'incredible' story from a website known for publishing exaggerated, or poorly researched click-bait?
@@ -13,3 +11,5 @@ Includes the ability to define your own groups. Groups, including those built-in
 Available on the Chrome Web Store: https://chrome.google.com/webstore/detail/gag-reflex/aceebhdjinpebfnbmbcgcmnldkfppanh
 
 Homepage: http://bytestemplar.com/web/gagreflex
+
+<img src="http://i.imgur.com/kn9DbZX.png">
