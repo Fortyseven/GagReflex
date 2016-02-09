@@ -79,7 +79,7 @@ var GagConfig = function ( on_loading_complete_callback )
         "enenews.com", "returnofkings.com", "rooshv.com", "fixedearth.com", "freerepublic.com", "angrywhitedude.com",
         "eagleforum.org", "afa.net", "metapedia.org", "rexresearch.com", "whitehonor.com", "conservapedia.com",
         "stormfront.org", "godvine.com", "patriotaction.net", "newsbusters.org", "greenmedinfo.com",
-        "conservativetribune.com"
+        "conservativetribune.com", "southideas.net"
 
         // If Drudge Report actually hosted its own original content, rest assured, a link to the site would go here.
     ];

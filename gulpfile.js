@@ -16,9 +16,8 @@ var OUTPUT_PATH = 'dist/';
 
 /***********************/
 gulp.task('misc', function(){
-	return gulp.src( ['manifest.json', 
-						'LICENSE'] )			
-		.pipe(gulp.dest(OUTPUT_PATH));	
+	return gulp.src( ['manifest.json', 'LICENSE'] )			
+                   .pipe(gulp.dest(OUTPUT_PATH));	
 });
 
 /***********************/
