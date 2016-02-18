@@ -6,11 +6,7 @@
  */
 var GagFacebook = function ( config )
 {
-    //this.self = this;
-
-    //this.ARTICLE_CLASS = "div[aria-label=\"Story\"] div._1dwg";
     this.ARTICLE_CLASS = "div[role=\"article\"]";
-    //this.ARTICLE_CLASS = "div._5pcr";
     this.ARTICLE_LINK_SELECTOR = "a._6kt, a._52c6, div._6m6>a, userContent a";
 
     this.REFRESH_DELAY = 1000;
@@ -19,7 +15,6 @@ var GagFacebook = function ( config )
 
     this.start = function()
     {
-        //setTimeout( this.runHighlighting.bind( this ), this.REFRESH_DELAY );
         this.runHighlighting();
     }
 
@@ -102,8 +97,8 @@ var GagFacebook = function ( config )
                     // Does the domain match?
                     if ( source_url == element ||
                          source_url.endsWith( "." + element ) ) {
+
                         // Brand it with the class belonging to the group
-                        //parent_element.classList.add( group_def.css_name );
                         $(parent_element).addClass( group_def.css_name );
                         has_found_match = true;
                         return true;
