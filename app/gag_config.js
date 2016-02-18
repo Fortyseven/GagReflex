@@ -23,7 +23,7 @@ var GagConfig = function ( on_loading_complete_callback )
         "politicalears.com", "realnewsrightnow.com", "rilenews.com", "witscience.org", "gomerblog.com", "nahadaily.com", 
         "rockcitytimes.com", "thedailymash.co.uk", "thedime.ca", "newswatch33.com", "cbsnews.com.co", "now8news.com", 
         "syruptrap.ca", "reportquickly.com", "news.bfnn.co.uk", "article107news.com", "totalfratmove.com",
-        "neomongolianewsnetwork.com"
+        "neomongolianewsnetwork.com", "onionstudios.com"
     ];
 
     /**
@@ -79,7 +79,7 @@ var GagConfig = function ( on_loading_complete_callback )
         "enenews.com", "returnofkings.com", "rooshv.com", "fixedearth.com", "freerepublic.com", "angrywhitedude.com",
         "eagleforum.org", "afa.net", "metapedia.org", "rexresearch.com", "whitehonor.com", "conservapedia.com",
         "stormfront.org", "godvine.com", "patriotaction.net", "newsbusters.org", "greenmedinfo.com",
-        "conservativetribune.com", "southideas.net"
+        "conservativetribune.com", "southideas.net", "shockingtimes.co.uk"
 
         // If Drudge Report actually hosted its own original content, rest assured, a link to the site would go here.
     ];
@@ -199,19 +199,20 @@ GagConfig.prototype.getDefaultConfig = function ()
 {
     return {
         options: {
-            enabledOnReddit:   true,
-            enabledOnFacebook: true
+            enabledOnReddit:          true,
+            enabledOnFacebook:        true,
+            enabledOnIndividualSites: true,
         },
         groups:  [
             this.createGroupObject( {
-                                        name:       "News Satire",
+                                        name:       GagConfig.GROUP_NAME_SATIRE_DOMAINS,
                                         domains:    this.SATIRE_DOMAINS,
                                         color_top:  "#ffdd88",
                                         readonly:   1,
                                         is_enabled: 1
                                     } ),
             this.createGroupObject( {
-                                        name:       "Questionable Sources",
+                                        name:       GagConfig.GROUP_NAME_QUESTIONABLE_DOMAINS,
                                         domains:    this.QUESTIONABLE_DOMAINS,
                                         color_top:  "#e39f9f",
                                         readonly:   1,
@@ -270,3 +271,5 @@ GagConfig.MSG_GET_USER_CONFIG = "getUserConfig";
 GagConfig.MSG_POPUP_SAVED = "popupSaved";
 GagConfig.MSG_POPUP_CLOSED = "popupClosed";
 GagConfig.MSG_POPUP_FACTORYRESET = "popupFactoryReset";
+GagConfig.GROUP_NAME_SATIRE_DOMAINS = "Satire and Fake News";
+GagConfig.GROUP_NAME_QUESTIONABLE_DOMAINS = "Questionable Content";

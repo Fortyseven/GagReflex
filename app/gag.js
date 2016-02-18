@@ -53,8 +53,11 @@ var Gag = function ( config )
             this._renderer = new GagReddit( this._config );
         }
         else {
-            throw "Could not find proper renderer for '" + site + "'";
-            return;
+            // do per-page check
+            if ( !this._config.options.enabledOnIndividualSites ) return;
+
+            this._renderer = new GagSingleSite( this._config );
+            this._renderer.setDomainName( site );
         }
 
         this._renderer.start();
