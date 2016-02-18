@@ -32,7 +32,9 @@ gulp.task('vendor', function() {
 gulp.task('bower', function(){
 	return gulp.src(
 		['bower_components/micromustache/dist/**/*.min.js',
-		 'bower_components/zepto/zepto.min.js']
+		 'bower_components/zepto/zepto.min.js',
+         'bower_components/sweetalert/dist/sweetalert.min.js'        
+         ]
 		, {base: './bower_components'})
 		.pipe(uglify())
 		.pipe(gulp.dest(OUTPUT_PATH + "bower_components"));
@@ -40,8 +42,11 @@ gulp.task('bower', function(){
 
 /***********************/
 gulp.task('css', function(){
-	var css_from_less = gulp.src('app/assets/*.less')
-							.pipe(less());
+	var css_from_less = gulp.src(
+        ['app/assets/*.less', 
+         'bower_components/sweetalert/dist/sweetalert.css'
+         ])
+		.pipe(less());
 							
 	var css = gulp.src('app/assets/*.css');
 	
@@ -55,14 +60,6 @@ gulp.task('css', function(){
 gulp.task('images', function(){
 	return gulp.src('app/assets/*.png')
 		.pipe(gulp.dest(OUTPUT_PATH+"app/assets/"));
-});
-
-/***********************/
-gulp.task('scripts', /*['dep'],*/function() {
-	return gulp.src('app/**/*.js')
-	//.pipe(concat())
-	.pipe(uglify()).on('error', errorHandler)
-	.pipe(gulp.dest(OUTPUT_PATH + 'app'));    
 });
 
 /***********************/
