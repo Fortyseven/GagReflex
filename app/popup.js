@@ -159,6 +159,11 @@ var Popup = function()
             _self.EditGroup(null);
         });
 
+        $("#OptionRenderIndividualSites" ).click(function(){
+            _self._config_data.options.enabledOnIndividualSites = $( this ).is( ":checked" );
+            _self.saveConfig();
+        });
+
         $("#OptionRenderFacebook" ).click(function(){
             _self._config_data.options.enabledOnFacebook = $( this ).is( ":checked" );
             _self.saveConfig();
@@ -215,6 +220,7 @@ var Popup = function()
 
         // Fill options
 
+        $( "#OptionRenderIndividualSites" ).prop( "checked", _self._config_data.options.enabledOnIndividualSites );
         $( "#OptionRenderFacebook" ).prop( "checked", _self._config_data.options.enabledOnFacebook );
         $( "#OptionRenderReddit" ).prop( "checked", _self._config_data.options.enabledOnReddit );
 
