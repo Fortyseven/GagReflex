@@ -21,6 +21,7 @@
     "tests"
   ],
   "dependencies": {
-    "zepto": "~1.1.6"
+    "zepto": "~1.1.6",
+    "sweetalert": "~1.1.3"
   }
 }
