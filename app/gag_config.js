@@ -23,7 +23,7 @@ var GagConfig = function ( on_loading_complete_callback )
         "politicalears.com", "realnewsrightnow.com", "rilenews.com", "witscience.org", "gomerblog.com", "nahadaily.com", 
         "rockcitytimes.com", "thedailymash.co.uk", "thedime.ca", "newswatch33.com", "cbsnews.com.co", "now8news.com", 
         "syruptrap.ca", "reportquickly.com", "news.bfnn.co.uk", "article107news.com", "totalfratmove.com",
-        "neomongolianewsnetwork.com", "onionstudios.com"
+        "neomongolianewsnetwork.com", "onionstudios.com", "abcnews.com.co"
     ];
 
     /**
