@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
     "name":             "Gag Reflex",
-    "description":      "Highlights Facebook and Reddit content based on the website being linked to.",
-    "version":          "2.3.2",
+    "description":      "Highlights satirical or questionable website content.",
+    "version":          "2.4",
     "icons":            {
         "16":  "app/assets/icon_16.png",
         "48":  "app/assets/icon_48.png",
@@ -19,11 +19,15 @@
     "content_scripts":  [
         {
             "matches": [
-                "*://*.facebook.com/*",
-                "*://*.reddit.com/*"
+                "<all_urls>"
+            ],
+            "css": [
+                "app/assets/sweetalert.css"
             ],
             "js":      [
                 "bower_components/zepto/zepto.min.js",
+                "bower_components/sweetalert/dist/sweetalert.min.js",
+                "app/gag_renderer_single_site.js",
                 "app/gag_renderer_facebook.js",
                 "app/gag_renderer_reddit.js",
                 "app/gag.js",
