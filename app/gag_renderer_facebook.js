@@ -31,14 +31,19 @@ var GagFacebook = function ( config )
     function deShimFacebookLink( link )
     {
         var href_match = link.href.match( /\?u=(.*)&/ );
-        if ( href_match[1] ) {
-            var url = decodeURIComponent( href_match[1] );
-            var host = url.match( /^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/ );
+        var matched_url = href_match[1];
+        
+        if ( matched_url ) {            
+            var url = decodeURIComponent( matched_url );           
+        
+            //var host = url.match( /^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/gi );
+            var host = url.match(/^http[s]?:\/\/(\w.*)\//);
+        
             if ( host ) {
-                return host[3];
+                return host[1];
             }
         }
-        console.warn( "Could not deshim ", link );
+        //console.warn( "Could not deshim ", link );
         return null;
     }
 
