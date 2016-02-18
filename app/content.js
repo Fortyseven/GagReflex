@@ -11,7 +11,7 @@ String.prototype.endsWith = function ( suffix ) {
 
 $(document).ready( function () {
     gagconfig = new GagConfig(function(config){
-        console.info( "Gag Reflex ready.👍" );
+        // console.info( "Gag Reflex ready.👍" );
         gag = new Gag(config);
         gag.run();
     });
