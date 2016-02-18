@@ -32,9 +32,10 @@ var GagFacebook = function ( config )
             var url = decodeURIComponent( matched_url );           
         
             //var host = url.match( /^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/gi );
-            var host = url.match(/^http[s]?:\/\/(\w.*)\//);
+            var host = url.match(/^http[s]?:\/\/([\w\.]+)\//i);
         
             if ( host ) {
+                console.log("X", host);
                 return host[1];
             }
         }
@@ -91,13 +92,15 @@ var GagFacebook = function ( config )
     {
         var has_found_match = false;
 
+//console.log("Search for", source_url);
+
         group_def.domains.forEach(
                 function ( element, index, array )
                 {
                     // Does the domain match?
                     if ( source_url == element ||
                          source_url.endsWith( "." + element ) ) {
-
+                        //console.log("MATCHED", element, source_url);
                         // Brand it with the class belonging to the group
                         $(parent_element).addClass( group_def.css_name );
                         has_found_match = true;
