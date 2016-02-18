@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name":             "Gag Reflex",
     "description":      "Highlights satirical or questionable website content.",
-    "version":          "2.4.2",
+    "version":          "2.4.3",
     "icons":            {
         "16":  "app/assets/icon_16.png",
         "48":  "app/assets/icon_48.png",
