@@ -9,7 +9,7 @@ var GagReddit = function ( config )
     this.ARTICLE_CLASS = "div.thing";
     this.ARTICLE_LINK_SELECTOR = "a.title";
 
-    this.REFRESH_DELAY = 1000;
+    this.REFRESH_DELAY = 1500;
 
     this._config = config;
 
