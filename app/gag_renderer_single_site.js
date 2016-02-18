@@ -90,8 +90,6 @@ var GagSingleSite = function ( config )
                                     confirmButtonText: "Okay",
                                     allowEscapeKey: true,
                                     html: true
-                                    // timer: "10000",
-                                    // animation: "slide-from-top"
                         };
 
                         if ( group_def.name == GagConfig.GROUP_NAME_QUESTIONABLE_DOMAINS) {
