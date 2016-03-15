@@ -3,19 +3,16 @@ body.stop-scrolling {
     overflow: hidden;
 }
 
-.sweet-overlay {
-    background-color: black;
-    /* IE8 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
-    /* IE8 */
-    background-color: rgba(0, 0, 0, 0.6);
+.sweet-overlay::after, .sweet-overlay {
+    /*background-color: black;*/
+    background-color: rgba(0, 0, 0, 0.75);
     position: fixed;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
     display: none;
-    z-index: 10000000;
+    z-index: 10000000; /* Some sites already use high z-indexes. Don't shame me! */
 }
 
 .sweet-alert {
