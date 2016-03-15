@@ -23,7 +23,8 @@ var GagConfig = function ( on_loading_complete_callback )
         "politicalears.com", "realnewsrightnow.com", "rilenews.com", "witscience.org", "gomerblog.com", "nahadaily.com", 
         "rockcitytimes.com", "thedailymash.co.uk", "thedime.ca", "newswatch33.com", "cbsnews.com.co", "now8news.com", 
         "syruptrap.ca", "reportquickly.com", "news.bfnn.co.uk", "article107news.com", "totalfratmove.com",
-        "neomongolianewsnetwork.com", "onionstudios.com", "abcnews.com.co", "submediant.com", "russiainyourface.com"
+        "neomongolianewsnetwork.com", "onionstudios.com", "abcnews.com.co", "submediant.com", "russiainyourface.com",
+        "satiratribune.com", "waterfordwhispersnews.com", "pointandclickbait.com", "thesciencepost.com"
     ];
 
     /**
@@ -42,7 +43,7 @@ var GagConfig = function ( on_loading_complete_callback )
         "americanfreepress.net", "antiwar.com", "truthstreammedia.com", "thenewamerican.com", "tarpley.net",
         "911truth.org", "wnd.com", "propagandamatrix.com", "oathkeepers.org", "cryptogon.com", "alt-market.com",
         "legitgov.org", "whatdoesitmean.com", "ronpaulinstitute.org", "tvnewslies.org", "dprogram.net", "smoloko.com",
-        "themindunleashed.org", "waykiwayki.com", "disclose.tv", "mirror.co.uk", "dailystar.co.uk", "dailymail.co.uk",
+        "themindunleashed.org", "waykiwayki.com", "disclose.tv", /*"mirror.co.uk",*/ "dailystar.co.uk", /*"dailymail.co.uk",*/
         "thesun.co.uk", "mercola.com", "agoracosmopolitan.com", "cryptozoologynews.com", "newshounds.us",
         "topekasnews.com", "pravda.ru", "eutimes.net", "examiner.com", "theepochtimes.com", "yournewswire.com",
         "worldtruth.tv", "wakeup-world.com", "ewao.com", "ufointernationalproject.com", "spiritlibrary.com",
@@ -79,7 +80,8 @@ var GagConfig = function ( on_loading_complete_callback )
         "enenews.com", "returnofkings.com", "rooshv.com", "fixedearth.com", "freerepublic.com", "angrywhitedude.com",
         "eagleforum.org", "afa.net", "metapedia.org", "rexresearch.com", "whitehonor.com", "conservapedia.com",
         "stormfront.org", "godvine.com", "patriotaction.net", "newsbusters.org", "greenmedinfo.com",
-        "conservativetribune.com", "southideas.net", "shockingtimes.co.uk", "gmmuk.com", "truthalerts.com"
+        "conservativetribune.com", "southideas.net", "shockingtimes.co.uk", "gmmuk.com", "truthalerts.com",
+        "corproject.com", "superstation95.com"
 
         // If Drudge Report actually hosted its own original content, rest assured, a link to the site would go here.
     ];
